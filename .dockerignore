@@ -1,0 +1,14 @@
+*
+!requirements.txt
+!app/
+!app/**
+!mia/
+!mia/mia-recommander/
+!mia/mia-recommander/**
+!deploy/
+!deploy/gunicorn.conf.py
+**/__pycache__
+**/*.pyc
+**/*.sqlite*
+**/*.db*
+**/.env

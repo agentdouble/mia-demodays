@@ -1,0 +1,14 @@
+[Unit]
+Description=MIA SQLite backup, restore verification and retention
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/lib/mia-demodays/backup.py
+UMask=0077
+Nice=10
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/srv/mia-demodays/production/data /var/backups/mia-demodays
