@@ -54,6 +54,8 @@ class Application:
                    ("Cache-Control", "no-store")]
         if self.config.secure:
             headers.append(("Strict-Transport-Security", "max-age=31536000"))
+        else:
+            headers.append(("X-Robots-Tag", "noindex, nofollow"))
         status, body, mime = 200, b"", "application/json; charset=utf-8"
         try:
             host = env.get("HTTP_HOST", "")

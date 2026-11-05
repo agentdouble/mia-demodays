@@ -110,6 +110,7 @@ class PublicGameTests(unittest.TestCase):
             self.assertEqual(self.browser.request(path)["status"], 404, path)
         response = self.browser.request("/recommander")
         self.assertEqual(response["status"], 200)
+        self.assertEqual(response["headers"]["X-Robots-Tag"], "noindex, nofollow")
         self.assertIn("script-src 'self'", response["headers"]["Content-Security-Policy"])
         self.assertNotIn(b"claude.use", response["body"])
         self.assertEqual(self.browser.request("/recommander", headers={"HTTP_HOST": "evil.example"})["status"], 421)
