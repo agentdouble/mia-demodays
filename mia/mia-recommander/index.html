@@ -320,7 +320,7 @@
 <div class="wrap">
   <div class="screen" id="screen">
     <div class="hud" id="hud" hidden>
-      <div class="pips" id="pips"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="pips" id="pips"></div>
       <div class="timer" id="timer">00:00.0</div>
       <button class="mute" id="mute" aria-label="Couper le son"></button>
     </div>
@@ -345,7 +345,7 @@
 
 <script>
 (() => {
-  const NEW_CAP = 4500, PORTFOLIO = 50000, ROUND = 5;
+  const NEW_CAP = 4500, PORTFOLIO = 50000, ROUND = 6;
 
   const SKIN = ["#F6D0B1", "#E8B48F", "#C68A62", "#8D5A3B", "#5E3B26"];
   const POOL = [
@@ -367,13 +367,33 @@
       look: { skin: 1, hair: "#8F8F99", style: "short", shirt: "#3A4A6B", glasses: true } },
     { name: "Anne", age: 49, job: "Avocate associée", income: 240000, paid: 2100, saving: 4000, tag: "Préfère l'immobilier locatif", yes: false, why: "N'atteint pas l'ancien plafond",
       look: { skin: 0, hair: "#E2B04A", style: "long", shirt: "#1E1E2A" } },
+    { name: "Laura", age: 44, job: "Architecte", income: 112000, paid: 3200, saving: 1600, tag: "Maximise toutes ses déductions", yes: true, why: "Au plafond, grosse épargne",
+      look: { skin: 0, hair: "#B5651D", style: "long", shirt: "#2E8B57" } },
+    { name: "Thomas", age: 39, job: "Consultant IT", income: 135000, paid: 3200, saving: 2200, tag: "Vient d'être augmenté", yes: true, why: "Au plafond, revenus en hausse",
+      look: { skin: 1, hair: "#3B2416", style: "short", shirt: "#4B6BFF", glasses: true } },
+    { name: "Sarah", age: 48, job: "Notaire", income: 190000, paid: 3200, saving: 3000, tag: "Demande un bilan retraite", yes: true, why: "Au plafond, prépare sa retraite",
+      look: { skin: 3, hair: "#120C08", style: "bun", shirt: "#C2304F" } },
+    { name: "Kevin", age: 31, job: "Trader", income: 150000, paid: 3200, saving: 2500, tag: "Compare ses rendements chaque mois", yes: true, why: "Au plafond, très actif sur son épargne",
+      look: { skin: 0, hair: "#E2B04A", style: "short", shirt: "#1E1E2A" } },
+    { name: "Miriam", age: 55, job: "Cheffe de service", income: 105000, paid: 3200, saving: 1000, tag: "Enfants partis de la maison", yes: true, why: "Au plafond, budget libéré",
+      look: { skin: 2, hair: "#8F8F99", style: "long", shirt: "#8A4BFF", glasses: true } },
+    { name: "Lina", age: 26, job: "Infirmière", income: 48000, paid: 0, saving: 250, tag: "Pas de contrat épargne-pension", yes: false, why: "N'a pas de contrat 111bis",
+      look: { skin: 1, hair: "#2A1B12", style: "long", shirt: "#43C6F5" } },
+    { name: "Patrick", age: 61, job: "Artisan", income: 70000, paid: 3200, saving: 100, tag: "Vient d'acheter un utilitaire", yes: false, why: "Au plafond, mais plus d'épargne",
+      look: { skin: 0, hair: "#C9CCD8", style: "short", shirt: "#E3683A" } },
+    { name: "Chloé", age: 34, job: "Professeure", income: 62000, paid: 1200, saving: 300, tag: "Verse le minimum chaque année", yes: false, why: "Loin de l'ancien plafond",
+      look: { skin: 0, hair: "#6B3A1F", style: "bun", shirt: "#FFC94A" } },
+    { name: "Marco", age: 45, job: "Restaurateur", income: 80000, paid: 2400, saving: 400, tag: "Trésorerie tendue cette année", yes: false, why: "Sous le plafond, trésorerie tendue",
+      look: { skin: 2, hair: "#120C08", style: "short", shirt: "#F2F4FF" } },
+    { name: "Hélène", age: 72, job: "Retraitée", income: 45000, paid: 0, saving: 500, tag: "Contrat arrivé à échéance", yes: false, why: "Contrat terminé, ne cotise plus",
+      look: { skin: 0, hair: "#E4E6EE", style: "bun", shirt: "#7A5A3A", glasses: true } },
     { name: "Julien", age: 36, job: "Pharmacien", income: 85000, paid: 3200, saving: 900, tag: "RDV demandé sur la réforme", yes: true, why: "Au plafond, RDV demandé",
       look: { skin: 4, hair: "#120C08", style: "short", shirt: "#43C6F5" } }
   ];
 
   const $ = id => document.getElementById(id);
   const screen = $("screen"), stage = $("stage"), hud = $("hud"), timerEl = $("timer"), muteBtn = $("mute");
-  const pips = [...document.querySelectorAll("#pips i")];
+  const pips = Array.from({ length: ROUND }, () => $("pips").appendChild(document.createElement("i")));
   const helpPanel = $("helpPanel");
   $("helpClose").onclick = () => { helpPanel.hidden = true; const s = $("help"); if (s) s.focus({ preventScroll: true }); };
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -495,7 +515,7 @@
   const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   function draw() {
     const yes = shuffle(POOL.filter(c => c.yes)), no = shuffle(POOL.filter(c => !c.yes));
-    const nYes = 2 + Math.floor(Math.random() * 2);
+    const nYes = 2 + Math.floor(Math.random() * (ROUND - 3));
     return shuffle([...yes.slice(0, nYes), ...no.slice(0, ROUND - nYes)]);
   }
   const clock = ms => { const s = ms / 1000, m = Math.floor(s / 60); return String(m).padStart(2, "0") + ":" + (s - m * 60).toFixed(1).padStart(4, "0"); };
@@ -576,7 +596,7 @@
       <section class="mission">
         <h2>MISSION</h2>
         <div class="lineup" id="lineup"></div>
-        <p>Ces 5 clients vont-ils augmenter leur versement 111bis&nbsp;?</p>
+        <p>Ces ${ROUND} clients vont-ils augmenter leur versement 111bis&nbsp;?</p>
         <div class="controls"><kbd class="k-no">◀ NON</kbd><kbd class="k-yes">OUI ▶</kbd></div>
         <div class="race">Le plus vite possible<small>1 seule partie</small></div>
         <button class="start" id="ok"><span>J'AI COMPRIS</span></button>
@@ -634,7 +654,7 @@
     if (!db || !player) return;
     try {
       await db.doc("trigrammes/" + player).update({
-        status: "done", score: good, grade: g, timeMs: Math.round(elapsed), finishedAt: new Date().toISOString()
+        status: "done", score: good, total: ROUND, grade: g, timeMs: Math.round(elapsed), finishedAt: new Date().toISOString()
       });
     } catch (e) {}
   }
@@ -681,7 +701,8 @@
   function renderBoard(rows) {
     const podium = $("podium"), ranks = $("ranks"), msg = $("lbmsg");
     if (!podium) return;
-    rows.sort((a, b) => b.score - a.score || a.timeMs - b.timeMs);
+    const ratio = r => r.score / (r.total || 5);
+    rows.sort((a, b) => ratio(b) - ratio(a) || a.timeMs - b.timeMs);
     const me = rows.findIndex(r => r.tri === player);
     msg.textContent = me >= 0 ? `${player} : ${me + 1}e sur ${rows.length}` : rows.length ? `${rows.length} joueur${rows.length > 1 ? "s" : ""}` : "Aucun joueur pour l'instant.";
 
@@ -690,7 +711,7 @@
       const r = rows[i], step = document.createElement("div");
       step.className = `step p${i + 1}` + (!r ? " empty" : "") + (i === me ? " me" : "");
       if (r) {
-        step.innerHTML = `<span class="tri">${esc(r.tri)}</span><span class="sc">${r.score}/5 · ${clock(r.timeMs)}</span><div class="block">${i + 1}</div>`;
+        step.innerHTML = `<span class="tri">${esc(r.tri)}</span><span class="sc">${r.score}/${r.total || 5} · ${clock(r.timeMs)}</span><div class="block">${i + 1}</div>`;
         step.prepend(avatar(lookFor(r.tri)));
       }
       podium.appendChild(step);
@@ -700,7 +721,7 @@
     const line = i => {
       const r = rows[i], li = document.createElement("li");
       li.className = i === me ? "me" : "";
-      li.innerHTML = `<span class="r">${i + 1}</span><span class="av"></span><b>${esc(r.tri)}</b><span>${r.score}/5</span><span>${clock(r.timeMs)}</span>`;
+      li.innerHTML = `<span class="r">${i + 1}</span><span class="av"></span><b>${esc(r.tri)}</b><span>${r.score}/${r.total || 5}</span><span>${clock(r.timeMs)}</span>`;
       li.querySelector(".av").replaceWith(avatar(lookFor(r.tri)));
       ranks.appendChild(li);
     };
@@ -811,10 +832,10 @@
   }
 
   function grade(good, perClient) {
-    if (good === 5 && perClient < 3) return "S";
-    if (good === 5) return "A";
-    if (good === 4) return "B";
-    if (good === 3) return "C";
+    if (good === ROUND && perClient < 3) return "S";
+    if (good === ROUND) return "A";
+    if (good === ROUND - 1) return "B";
+    if (good === ROUND - 2) return "C";
     return "D";
   }
 
