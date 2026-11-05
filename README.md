@@ -4,6 +4,9 @@ MIA Recommander is a six-card arcade game, served at `/recommander`.
 Fictional clients, a public trigram leaderboard and one round per trigram/browser session.
 The original interface is preserved; the Claude artifacts database is replaced by a small
 Python WSGI API and persistent SQLite. No LLM, analytics or external font request is needed.
+The game viewport blocks scrolling and page zoom gestures; the complete console scales
+to fit short screens and orientation changes. The separate data-information page remains
+a normal document. Asset references are content-versioned so a new release refreshes the UI.
 
 ## Development
 

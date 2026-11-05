@@ -1,4 +1,5 @@
 import { api } from "./api.js";
+import { lockGameViewport } from "./viewport.js";
 
 (() => {
   const NEW_CAP = 4500, PORTFOLIO = 50000, ROUND = 6;
@@ -10,6 +11,7 @@ import { api } from "./api.js";
   const screen = $("screen"), stage = $("stage"), hud = $("hud"), timerEl = $("timer"), muteBtn = $("mute");
   const pips = Array.from({ length: ROUND }, () => $("pips").appendChild(document.createElement("i")));
   const helpPanel = $("helpPanel");
+  lockGameViewport(screen, stage, helpPanel);
   $("helpClose").onclick = () => { helpPanel.hidden = true; const s = $("help"); if (s) s.focus({ preventScroll: true }); };
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fr = (n, d = 0) => new Intl.NumberFormat("fr-FR", { maximumFractionDigits: d, minimumFractionDigits: d }).format(n);

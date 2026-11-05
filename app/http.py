@@ -1,7 +1,6 @@
 """Small WSGI boundary: explicit static allowlist, CSRF and bounded requests."""
 from http import HTTPStatus
 from http.cookies import SimpleCookie, CookieError
-from pathlib import Path
 from urllib.parse import urlsplit
 import hashlib
 import hmac
@@ -14,13 +13,10 @@ import sqlite3
 import time
 
 from .config import Config
+from .assets import load_assets
 from .store import Store
 from . import game
 
-STATIC = Path(__file__).parent.parent / "mia/mia-recommander"
-ASSETS = {"game.js": "text/javascript", "api.js": "text/javascript", "game.css": "text/css",
-          "fonts/press-start.ttf": "font/ttf", "fonts/pixel-400.ttf": "font/ttf",
-          "fonts/pixel-600.ttf": "font/ttf", "fonts/pixel-700.ttf": "font/ttf"}
 CSP = ("default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; "
        "font-src 'self'; img-src 'self' data:; connect-src 'self'; "
        "base-uri 'none'; frame-ancestors 'none'; form-action 'self'; object-src 'none'")
@@ -31,9 +27,7 @@ class Application:
         self.config, self.clock = config, clock
         self.store = Store(config.database)
         self.cookie_name = "__Secure-mia_sid" if config.secure else "mia_sid"
-        self.assets = {"/" + n: ((STATIC / n).read_bytes(), mime) for n, mime in ASSETS.items()}
-        self.page = (STATIC / "index.html").read_bytes()
-        self.privacy = (STATIC / "privacy.html").read_bytes()
+        self.assets, self.page, self.privacy = load_assets()
 
     def sign(self, value):
         return hmac.new(self.config.secret.encode(), value.encode(), hashlib.sha256).hexdigest()

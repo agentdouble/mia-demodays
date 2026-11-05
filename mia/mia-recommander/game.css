@@ -338,3 +338,32 @@
 .privacy-page { user-select: text; line-height: 1.5; }
 .privacy-page h1 { font-size: 24px; }
 .privacy-page a { color: var(--sky); }
+
+html.game-document, body.game-page {
+  width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none;
+  touch-action: none;
+}
+body.game-page { position: fixed; inset: 0; }
+.game-page .wrap {
+  position: fixed;
+  inset: max(12px, env(safe-area-inset-top)) 12px max(36px, calc(env(safe-area-inset-bottom) + 28px));
+  padding: 0;
+  display: grid;
+  place-items: center;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+}
+.game-page .screen {
+  min-height: 0;
+  max-width: none;
+  margin: 0;
+  transform: scale(var(--console-scale, 1));
+  transform-origin: center;
+}
+.game-page .stage { min-height: 0; }
+.game-page .help { overflow: hidden; }
+.game-page .lineup { width: 100%; }
+.game-page .lineup canvas { min-width: 0; flex: 1; max-width: 52px; height: auto; aspect-ratio: 1; }
+.game-page .privacy-link {
+  position: fixed; inset: auto 0 max(4px, env(safe-area-inset-bottom));
+  height: 24px; padding: 0; display: grid; place-items: center;
+}

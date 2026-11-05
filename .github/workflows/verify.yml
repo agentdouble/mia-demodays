@@ -17,4 +17,5 @@ jobs:
       - run: |
           node --check mia/mia-recommander/game.js
           node --check mia/mia-recommander/api.js
+          node --check mia/mia-recommander/viewport.js
           python -m compileall -q app deploy
