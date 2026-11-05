@@ -48,6 +48,14 @@ Application secrets are generated independently on the host and never printed.
 Install the kit before the first release; update root-owned deployment files explicitly
 when their contracts change. New images never execute repository deployment scripts
 as root. Compose has separate projects, private networks/data and loopback ports 18081/18080.
+The Docker bridge allows container egress; application HTTP ports are published only
+on host loopback. An `internal: true` bridge is unsuitable for this host healthcheck/
+SSH-forwarding setup on the installed Docker version, which suppresses port publication.
+
+The host firewall admits only SSH and HTTP/HTTPS (22, 80, 443), in addition to established
+connections. SSH password/interactive authentication and root SSH login are disabled
+after verifying the administrator's key access. These host settings are applied by
+the administrator and are not modified by the CI key.
 
 ## SQLite and operation
 
