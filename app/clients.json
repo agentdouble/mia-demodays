@@ -1,0 +1,348 @@
+[
+  {
+    "name": "Sophie",
+    "age": 41,
+    "job": "Juriste",
+    "income": 118000,
+    "paid": 3200,
+    "saving": 1400,
+    "tag": "Optimise ses impôts",
+    "yes": true,
+    "why": "Au plafond, grosse épargne",
+    "look": {
+      "skin": 0,
+      "hair": "#6B3A1F",
+      "style": "long",
+      "shirt": "#4B6BFF"
+    }
+  },
+  {
+    "name": "Marc",
+    "age": 29,
+    "job": "Technicien",
+    "income": 41000,
+    "paid": 600,
+    "saving": 150,
+    "tag": "Contrat ouvert par ses parents",
+    "yes": false,
+    "why": "Très loin de l'ancien plafond",
+    "look": {
+      "skin": 1,
+      "hair": "#2A1B12",
+      "style": "short",
+      "shirt": "#E3683A"
+    }
+  },
+  {
+    "name": "Elena",
+    "age": 52,
+    "job": "Médecin indépendante",
+    "income": 205000,
+    "paid": 3200,
+    "saving": 3500,
+    "tag": "Prépare sa retraite",
+    "yes": true,
+    "why": "Au plafond, revenus élevés",
+    "look": {
+      "skin": 1,
+      "hair": "#1B1B1B",
+      "style": "bun",
+      "shirt": "#F2F4FF",
+      "glasses": true
+    }
+  },
+  {
+    "name": "Jean",
+    "age": 68,
+    "job": "Retraité",
+    "income": 52000,
+    "paid": 0,
+    "saving": 600,
+    "tag": "Rente 111bis versée depuis 2024",
+    "yes": false,
+    "why": "En phase de rente, ne cotise plus",
+    "look": {
+      "skin": 0,
+      "hair": "#C9CCD8",
+      "style": "bald",
+      "shirt": "#7A5A3A",
+      "glasses": true
+    }
+  },
+  {
+    "name": "Claire",
+    "age": 46,
+    "job": "Directrice financière",
+    "income": 160000,
+    "paid": 3200,
+    "saving": 2000,
+    "tag": "Suit sa fiscalité de près",
+    "yes": true,
+    "why": "Au plafond depuis des années",
+    "look": {
+      "skin": 2,
+      "hair": "#3B2416",
+      "style": "bun",
+      "shirt": "#C2304F"
+    }
+  },
+  {
+    "name": "Paul",
+    "age": 38,
+    "job": "Commercial",
+    "income": 64000,
+    "paid": 1800,
+    "saving": 200,
+    "tag": "Crédit immo signé en mars",
+    "yes": false,
+    "why": "Sous le plafond, budget serré",
+    "look": {
+      "skin": 0,
+      "hair": "#B5651D",
+      "style": "short",
+      "shirt": "#2E8B57"
+    }
+  },
+  {
+    "name": "Nadia",
+    "age": 33,
+    "job": "Ingénieure logiciel",
+    "income": 92000,
+    "paid": 3200,
+    "saving": 1200,
+    "tag": "A posé une question sur la réforme",
+    "yes": true,
+    "why": "Au plafond et déjà intéressée",
+    "look": {
+      "skin": 3,
+      "hair": "#120C08",
+      "style": "long",
+      "shirt": "#8A4BFF"
+    }
+  },
+  {
+    "name": "Tom",
+    "age": 57,
+    "job": "Cadre industrie",
+    "income": 98000,
+    "paid": 3200,
+    "saving": 50,
+    "tag": "3 enfants aux études",
+    "yes": false,
+    "why": "Au plafond, mais plus d'épargne",
+    "look": {
+      "skin": 1,
+      "hair": "#8F8F99",
+      "style": "short",
+      "shirt": "#3A4A6B",
+      "glasses": true
+    }
+  },
+  {
+    "name": "Anne",
+    "age": 49,
+    "job": "Avocate associée",
+    "income": 240000,
+    "paid": 2100,
+    "saving": 4000,
+    "tag": "Préfère l'immobilier locatif",
+    "yes": false,
+    "why": "N'atteint pas l'ancien plafond",
+    "look": {
+      "skin": 0,
+      "hair": "#E2B04A",
+      "style": "long",
+      "shirt": "#1E1E2A"
+    }
+  },
+  {
+    "name": "Laura",
+    "age": 44,
+    "job": "Architecte",
+    "income": 112000,
+    "paid": 3200,
+    "saving": 1600,
+    "tag": "Maximise toutes ses déductions",
+    "yes": true,
+    "why": "Au plafond, grosse épargne",
+    "look": {
+      "skin": 0,
+      "hair": "#B5651D",
+      "style": "long",
+      "shirt": "#2E8B57"
+    }
+  },
+  {
+    "name": "Thomas",
+    "age": 39,
+    "job": "Consultant IT",
+    "income": 135000,
+    "paid": 3200,
+    "saving": 2200,
+    "tag": "Vient d'être augmenté",
+    "yes": true,
+    "why": "Au plafond, revenus en hausse",
+    "look": {
+      "skin": 1,
+      "hair": "#3B2416",
+      "style": "short",
+      "shirt": "#4B6BFF",
+      "glasses": true
+    }
+  },
+  {
+    "name": "Sarah",
+    "age": 48,
+    "job": "Notaire",
+    "income": 190000,
+    "paid": 3200,
+    "saving": 3000,
+    "tag": "Demande un bilan retraite",
+    "yes": true,
+    "why": "Au plafond, prépare sa retraite",
+    "look": {
+      "skin": 3,
+      "hair": "#120C08",
+      "style": "bun",
+      "shirt": "#C2304F"
+    }
+  },
+  {
+    "name": "Kevin",
+    "age": 31,
+    "job": "Trader",
+    "income": 150000,
+    "paid": 3200,
+    "saving": 2500,
+    "tag": "Compare ses rendements chaque mois",
+    "yes": true,
+    "why": "Au plafond, très actif sur son épargne",
+    "look": {
+      "skin": 0,
+      "hair": "#E2B04A",
+      "style": "short",
+      "shirt": "#1E1E2A"
+    }
+  },
+  {
+    "name": "Miriam",
+    "age": 55,
+    "job": "Cheffe de service",
+    "income": 105000,
+    "paid": 3200,
+    "saving": 1000,
+    "tag": "Enfants partis de la maison",
+    "yes": true,
+    "why": "Au plafond, budget libéré",
+    "look": {
+      "skin": 2,
+      "hair": "#8F8F99",
+      "style": "long",
+      "shirt": "#8A4BFF",
+      "glasses": true
+    }
+  },
+  {
+    "name": "Lina",
+    "age": 26,
+    "job": "Infirmière",
+    "income": 48000,
+    "paid": 0,
+    "saving": 250,
+    "tag": "Pas de contrat épargne-pension",
+    "yes": false,
+    "why": "N'a pas de contrat 111bis",
+    "look": {
+      "skin": 1,
+      "hair": "#2A1B12",
+      "style": "long",
+      "shirt": "#43C6F5"
+    }
+  },
+  {
+    "name": "Patrick",
+    "age": 61,
+    "job": "Artisan",
+    "income": 70000,
+    "paid": 3200,
+    "saving": 100,
+    "tag": "Vient d'acheter un utilitaire",
+    "yes": false,
+    "why": "Au plafond, mais plus d'épargne",
+    "look": {
+      "skin": 0,
+      "hair": "#C9CCD8",
+      "style": "short",
+      "shirt": "#E3683A"
+    }
+  },
+  {
+    "name": "Chloé",
+    "age": 34,
+    "job": "Professeure",
+    "income": 62000,
+    "paid": 1200,
+    "saving": 300,
+    "tag": "Verse le minimum chaque année",
+    "yes": false,
+    "why": "Loin de l'ancien plafond",
+    "look": {
+      "skin": 0,
+      "hair": "#6B3A1F",
+      "style": "bun",
+      "shirt": "#FFC94A"
+    }
+  },
+  {
+    "name": "Marco",
+    "age": 45,
+    "job": "Restaurateur",
+    "income": 80000,
+    "paid": 2400,
+    "saving": 400,
+    "tag": "Trésorerie tendue cette année",
+    "yes": false,
+    "why": "Sous le plafond, trésorerie tendue",
+    "look": {
+      "skin": 2,
+      "hair": "#120C08",
+      "style": "short",
+      "shirt": "#F2F4FF"
+    }
+  },
+  {
+    "name": "Hélène",
+    "age": 72,
+    "job": "Retraitée",
+    "income": 45000,
+    "paid": 0,
+    "saving": 500,
+    "tag": "Contrat arrivé à échéance",
+    "yes": false,
+    "why": "Contrat terminé, ne cotise plus",
+    "look": {
+      "skin": 0,
+      "hair": "#E4E6EE",
+      "style": "bun",
+      "shirt": "#7A5A3A",
+      "glasses": true
+    }
+  },
+  {
+    "name": "Julien",
+    "age": 36,
+    "job": "Pharmacien",
+    "income": 85000,
+    "paid": 3200,
+    "saving": 900,
+    "tag": "RDV demandé sur la réforme",
+    "yes": true,
+    "why": "Au plafond, RDV demandé",
+    "look": {
+      "skin": 4,
+      "hair": "#120C08",
+      "style": "short",
+      "shirt": "#43C6F5"
+    }
+  }
+]

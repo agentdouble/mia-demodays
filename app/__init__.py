@@ -1,0 +1,1 @@
+"""MIA Recommander public application."""
