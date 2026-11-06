@@ -104,6 +104,23 @@ class PublicGameTests(unittest.TestCase):
         loser = self.browser if results[0] == 409 else other
         self.assertEqual(loser.api("answer", {"index": 0, "yes": True})["status"], 404)
 
+    def test_session_reports_only_its_own_round_before_registration(self):
+        self.assertIsNone(self.browser.session()["json"]["participation"])
+        self.browser.api("claim", {"tri": "ABC"})
+        self.assertEqual(self.browser.session()["json"]["participation"], {"tri": "ABC", "status": "reserved"})
+        other = Browser(self.app)
+        self.assertIsNone(other.session()["json"]["participation"])
+        self.browser.api("start", {})
+        self.assertEqual(self.browser.session()["json"]["participation"], {"tri": "ABC", "status": "playing"})
+        for i in range(6):
+            self.now += 1
+            self.browser.api("answer", {"index": i, "yes": False})
+        self.assertEqual(self.browser.session()["json"]["participation"], {"tri": "ABC", "status": "done"})
+        self.assertEqual(self.browser.api("claim", {"tri": "DEF"})["status"], 409)
+        self.assertIsNone(other.session()["json"]["participation"])
+        self.now += 31 * 86400
+        self.assertIsNone(self.browser.session()["json"]["participation"])
+
     def test_secrets_traversal_admin_and_database_are_not_served(self):
         for path in ["/.env", "/app/clients.json", "/data/mia.sqlite3", "/recommander/../app/clients.json",
                      "/recommander/data/game.db", "/recommander/api/admin", "/recommander/index.html"]:

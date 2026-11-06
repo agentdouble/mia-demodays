@@ -136,7 +136,8 @@ class Application:
                 cookie = f"{self.cookie_name}={sid}; Path={self.config.prefix}; HttpOnly; SameSite=Strict; Max-Age=86400"
                 if self.config.secure:
                     cookie += "; Secure"
-                return {"csrf": self.sign("csrf:" + sid)}, [("Set-Cookie", cookie)]
+                own_game = game.participation(db, self.sign("owner:" + sid), now)
+                return {"csrf": self.sign("csrf:" + sid), "participation": own_game}, [("Set-Cookie", cookie)]
             if route == "leaderboard":
                 return game.leaderboard(db, now), []
             game.rate_limit(db, identity, "write", now, count=180, period=60)

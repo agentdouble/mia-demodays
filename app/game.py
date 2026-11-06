@@ -31,6 +31,20 @@ def public_clients(ids):
     return [{k: v for k, v in CLIENTS[i].items() if k not in ("yes", "why")} for i in ids]
 
 
+def participation(db, owner, now):
+    """Report only this browser's unexpired reservation/round, without mutating it."""
+    row = db.execute(
+        "SELECT tri,started,finished FROM games WHERE owner=? AND created>=? "
+        "AND (started IS NOT NULL OR created>=?) "
+        "AND (finished IS NOT NULL OR started IS NULL OR started>=?)",
+        (owner, now-RETENTION, now-LEASE, now-LEASE),
+    ).fetchone()
+    if not row:
+        return None
+    status = "done" if row["finished"] is not None else "playing" if row["started"] is not None else "reserved"
+    return {"tri": row["tri"], "status": status}
+
+
 def claim(db, owner, tri, now):
     if not isinstance(tri, str) or not re.fullmatch(r"[A-Z]{3}", tri):
         raise Problem("invalid_trigram")

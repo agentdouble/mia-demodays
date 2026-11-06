@@ -157,7 +157,7 @@ import { lockGameViewport } from "./viewport.js";
       </div>`;
     $("p1").replaceWith(avatar(PLAYER));
     $("p2").replaceWith(robot());
-    $("start").onclick = mission;
+    $("start").onclick = begin;
     $("help").onclick = () => { helpPanel.hidden = false; $("helpClose").focus({ preventScroll: true }); };
     $("start").focus({ preventScroll: true });
   }
@@ -178,6 +178,42 @@ import { lockGameViewport } from "./viewport.js";
     expired: "La partie a expiré. Rechargez la page."
   };
 
+  function alreadyPlayed(previous) {
+    player = previous.tri;
+    hud.hidden = true;
+    stage.innerHTML = `
+      <section class="entry">
+        <h2 class="entry-label" role="status">${previous.status === "done" ? "Vous avez déjà joué." : "Une partie a déjà été lancée."}</h2>
+        <button class="start" id="playedBoard"><span>CLASSEMENT</span></button>
+        <button class="link" id="playedHome">ACCUEIL</button>
+      </section>`;
+    $("playedBoard").onclick = leaderboard;
+    $("playedHome").onclick = title;
+    $("playedBoard").focus({ preventScroll: true });
+  }
+
+  async function mayEnter(retry) {
+    hud.hidden = true;
+    stage.innerHTML = `<section class="entry"><p role="status">Vérification…</p></section>`;
+    try {
+      const session = await api.session();
+      if (session.participation && session.participation.status !== "reserved") {
+        alreadyPlayed(session.participation);
+        return false;
+      }
+      return session;
+    } catch (error) {
+      stage.innerHTML = `<section class="entry"><p class="entry-msg" role="status">Connexion indisponible. Réessayez.</p><button class="start" id="retryEntry">RÉESSAYER</button></section>`;
+      $("retryEntry").onclick = retry;
+      $("retryEntry").focus({ preventScroll: true });
+      return false;
+    }
+  }
+
+  async function begin() {
+    if (await mayEnter(begin)) mission();
+  }
+
   function mission() {
     hud.hidden = true;
     stage.innerHTML = `
@@ -195,7 +231,9 @@ import { lockGameViewport } from "./viewport.js";
     $("ok").focus({ preventScroll: true });
   }
 
-  function entry() {
+  async function entry() {
+    const session = await mayEnter(entry);
+    if (!session) return;
     hud.hidden = true;
     stage.innerHTML = `
       <form class="entry" id="entry" novalidate>
@@ -217,6 +255,7 @@ import { lockGameViewport } from "./viewport.js";
       msg.textContent = "";
     };
     input.addEventListener("input", paint);
+    input.value = session.participation?.tri || "";
     paint();
     input.focus({ preventScroll: true });
     $("back").onclick = mission;
@@ -228,6 +267,7 @@ import { lockGameViewport } from "./viewport.js";
       go.firstElementChild.textContent = "…";
       const r = await claim(tri);
       if (r === "ok") { player = tri; countdown(); return; }
+      if (r === "played") { await entry(); return; }
       msg.textContent = r === "taken" ? `${tri} a déjà joué.` : (MESSAGES[r] || MESSAGES.error);
       if (r === "taken") sfx.ko();
       go.firstElementChild.textContent = "GO";
@@ -320,7 +360,12 @@ import { lockGameViewport } from "./viewport.js";
       await wait(550);
     }
     try { await api.post("start", {}); }
-    catch (error) { entry(); $("msg").textContent = MESSAGES[error.code] || MESSAGES.error; return; }
+    catch (error) {
+      await entry();
+      const message = $("msg");
+      if (message) message.textContent = MESSAGES[error.code] || MESSAGES.error;
+      return;
+    }
     sfx.go();
     t0 = performance.now(); playing = true;
     raf = requestAnimationFrame(loop);

@@ -27,17 +27,18 @@ async function request(route, body) {
   } finally { clearTimeout(timeout); }
 }
 
-async function initialize() {
-  if (!initialization) {
-    initialization = request("session").then(data => { csrf = data.csrf; }).catch(error => {
+async function initialize(refresh = false) {
+  if (!initialization || refresh) {
+    initialization = request("session").then(data => { csrf = data.csrf; return data; }).catch(error => {
       initialization = null;
       throw error;
     });
   }
-  await initialization;
+  return initialization;
 }
 
 export const api = {
   get: route => request(route),
+  session: () => initialize(true),
   async post(route, body) { await initialize(); return request(route, body); }
 };
