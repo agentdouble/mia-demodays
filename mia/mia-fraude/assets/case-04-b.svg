@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640">
+<rect width="900" height="640" fill="#faf9f4"/>
+<path d="M0 0h900v12H0z" fill="#263c42"/>
+<g font-family="Arial,sans-serif" fill="#25383c">
+<text x="44" y="65" font-size="23" font-weight="700">ESPACE BANCAIRE / Opération exécutée</text>
+<text x="44" y="122" font-size="40" font-weight="700">Avis de virement</text>
+<text x="44" y="163" font-size="23" fill="#657479">Extrait du 05.11.2026 · statut : exécuté</text>
+<path d="M44 186H856" stroke="#cbd2ce" stroke-width="2"/>
+<text x="44" y="221" font-size="21" fill="#637475">Émetteur → bénéficiaire</text>
+<text x="44" y="258" font-size="32" font-weight="700">Sam Robin → Carrosserie du Canal</text>
+<text x="44" y="300" font-size="21" fill="#637475">Motif du paiement</text>
+<text x="44" y="337" font-size="32" font-weight="700">Solde facture FC-1086</text>
+<text x="44" y="379" font-size="21" fill="#637475">Date de valeur</text>
+<text x="44" y="416" font-size="32" font-weight="700">05.11.2026</text>
+<rect x="520" y="465" width="336" height="104" rx="2" fill="#e8ede7"/>
+<text x="540" y="500" font-size="22">Montant transféré</text>
+<text x="540" y="548" font-size="40" font-weight="700">1 040,00 €</text>
+<path d="M44 593H856" stroke="#cbd2ce"/>
+<text x="44" y="621" font-size="17" fill="#87928c">Extrait pour le jeu · document et identités fictifs</text></g></svg>

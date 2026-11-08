@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640">
+<rect width="900" height="640" fill="#faf9f4"/>
+<path d="M0 0h900v12H0z" fill="#263c42"/>
+<g font-family="Arial,sans-serif" fill="#25383c">
+<text x="44" y="65" font-size="23" font-weight="700">CARROSSERIE DU CANAL</text>
+<text x="44" y="122" font-size="40" font-weight="700">Facture de réparation</text>
+<text x="44" y="163" font-size="23" fill="#657479">FC-1086 · 04.11.2026 · client : Sam Robin</text>
+<path d="M44 186H856" stroke="#cbd2ce" stroke-width="2"/>
+<text x="44" y="221" font-size="21" fill="#637475">Réparation et peinture</text>
+<text x="44" y="258" font-size="32" font-weight="700">Total TTC : 1 440,00 €</text>
+<text x="44" y="300" font-size="21" fill="#637475">Acompte reçu le 27.10.2026</text>
+<text x="44" y="337" font-size="32" font-weight="700">400,00 € · carte bancaire</text>
+<text x="44" y="379" font-size="21" fill="#637475">Solde à régler</text>
+<text x="44" y="416" font-size="32" font-weight="700">1 040,00 €</text>
+<text x="44" y="568" font-size="24">Facture : 1 440 € = acompte 400 € + solde 1 040 €</text>
+<path d="M44 593H856" stroke="#cbd2ce"/>
+<text x="44" y="621" font-size="17" fill="#87928c">Extrait pour le jeu · document et identités fictifs</text></g></svg>

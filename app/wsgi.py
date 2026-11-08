@@ -1,3 +1,3 @@
-from .http import create_app
+from .portal import create_app
 
 application = create_app()

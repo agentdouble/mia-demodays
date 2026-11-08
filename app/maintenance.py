@@ -6,6 +6,7 @@ import sqlite3
 
 from .config import Config
 from .store import Store
+from .fraud_store import FraudStore, database_path
 from .game import RETENTION
 import time
 
@@ -14,6 +15,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("action", choices=("backup", "check", "purge"))
     parser.add_argument("path", nargs="?")
+    parser.add_argument("--game", choices=("recommander", "fraude"), default="recommander")
     args = parser.parse_args()
     if args.action == "check":
         if not args.path:
@@ -22,7 +24,8 @@ def main():
             assert db.execute("PRAGMA integrity_check").fetchone()[0] == "ok"
             print("SQLite integrity: OK; games:", db.execute("SELECT count(*) FROM games").fetchone()[0])
         return
-    store = Store(Config.from_env().database)
+    config = Config.from_env()
+    store = FraudStore(database_path(config)) if args.game == "fraude" else Store(config.database)
     if args.action == "backup":
         if not args.path:
             parser.error("backup requires a new destination path")

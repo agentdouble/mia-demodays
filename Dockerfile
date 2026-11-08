@@ -6,6 +6,7 @@ RUN pip install --no-cache-dir --require-hashes -r requirements.txt \
     && groupadd -g 10001 mia && useradd -u 10001 -g mia -M -d /nonexistent mia
 COPY app ./app
 COPY mia/mia-recommander ./mia/mia-recommander
+COPY mia/mia-fraude ./mia/mia-fraude
 COPY deploy/gunicorn.conf.py ./gunicorn.conf.py
 USER 10001:10001
 EXPOSE 8080

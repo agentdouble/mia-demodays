@@ -82,9 +82,10 @@ def main():
     try:
         compose(environment, ["up", "-d", "--wait", "--wait-timeout", "90", "app"])
         host = "mia-staging.localhost:18081" if environment == "staging" else "mia-foyer.com"
-        request = Request(f"http://127.0.0.1:{port}/recommander/api/health", headers={"Host": host})
-        with urlopen(request, timeout=10) as response:
-            assert response.status == 200
+        for game in ("recommander", "fraude"):
+            request = Request(f"http://127.0.0.1:{port}/{game}/api/health", headers={"Host": host})
+            with urlopen(request, timeout=10) as response:
+                assert response.status == 200
         if environment == "production":
             compose(environment, ["--profile", "public", "up", "-d", "caddy"])
     except BaseException:
