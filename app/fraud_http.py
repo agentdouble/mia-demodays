@@ -1,7 +1,9 @@
 """Isolated /fraude HTTP boundary, reusing the existing audited WSGI headers."""
 from http.cookies import SimpleCookie, CookieError
 from types import SimpleNamespace
+from urllib.parse import urlsplit
 import hmac
+import hashlib
 import json
 import re
 import secrets
@@ -14,7 +16,10 @@ from . import fraud_game as game
 
 
 class FraudApplication(Application):
-    def __init__(self, config, clock=time.time):
+    def __init__(self, config, clock=time.time, *, preview=False):
+        if preview and (config.secure or urlsplit(config.origin).hostname not in ("localhost", "127.0.0.1", "::1")):
+            raise ValueError("Replay preview is only available on local HTTP")
+        self.preview = preview
         # Config has already validated the public origin and secret. Its original
         # /recommander restriction and its database are deliberately left intact.
         self.config = SimpleNamespace(origin=config.origin, secret=config.secret,
@@ -24,12 +29,14 @@ class FraudApplication(Application):
         self.store = FraudStore(database_path(config))
         self.cookie_name = "__Secure-mia_fraud_sid" if config.secure else "mia_fraud_sid"
         self.assets, self.page, self.privacy = load_assets()
+        self.asset_versions = {name.removeprefix("/assets/"): hashlib.sha256(body).hexdigest()[:16]
+                               for name, (body, _) in self.assets.items() if name.startswith("/assets/")}
 
     def sign(self, value):
         return super().sign("fraud:" + value)
 
     def api(self, env, route, method):
-        writes = ("claim", "start", "answer", "locate", "next")
+        writes = ("claim", "start", "answer", "locate", "next") + (("replay",) if self.preview else ())
         if route not in (*writes, "session", "health", "leaderboard"):
             raise Problem("not_found", 404)
         if method != ("POST" if route in writes else "GET"):
@@ -76,7 +83,7 @@ class FraudApplication(Application):
                 cookie = f"{self.cookie_name}={sid}; Path=/fraude; HttpOnly; SameSite=Strict; Max-Age=86400"
                 if self.config.secure:
                     cookie += "; Secure"
-                return {"csrf": self.sign("csrf:"+sid), "participation": game.participation(db, self.sign("owner:"+sid), now)}, [("Set-Cookie", cookie)]
+                return {"csrf": self.sign("csrf:"+sid), "preview": self.preview, "participation": game.participation(db, self.sign("owner:"+sid), now)}, [("Set-Cookie", cookie)]
             if route == "leaderboard":
                 return game.leaderboard(db, now), []
             rate_limit(db, identity, "write", now, count=600, period=60)
@@ -84,6 +91,11 @@ class FraudApplication(Application):
             if route == "claim":
                 rate_limit(db, identity, "claim", now, count=120, period=60)
         with self.store.transaction() as db:
+            if route == "replay":
+                if data:
+                    raise Problem("invalid_body")
+                db.execute("DELETE FROM games WHERE owner=?", (owner,))
+                return {"ok": True}, []
             if route == "claim":
                 if set(data) != {"tri"}:
                     raise Problem("invalid_trigram")
@@ -94,4 +106,11 @@ class FraudApplication(Application):
                 response = game.start(db, owner, now)
             else:
                 response = {"answer": game.answer, "locate": game.locate, "next": game.next_case}[route](db, owner, data, now)
+            if "case" in response:
+                # New artwork must be visible immediately after a release, even
+                # if the browser cached a previous document under the same name.
+                response["case"]["panels"] = [
+                    {**panel, "src": panel["src"]+"?v="+self.asset_versions[panel["src"]]}
+                    for panel in response["case"]["panels"]
+                ]
             return response, []

@@ -1,18 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640">
-<rect width="900" height="640" fill="#faf9f4"/>
-<path d="M0 0h900v12H0z" fill="#263c42"/>
-<g font-family="Arial,sans-serif" fill="#25383c">
-<text x="44" y="65" font-size="23" font-weight="700">GESTION SINISTRES / Dossiers distincts</text>
-<text x="44" y="122" font-size="40" font-weight="700">Coordonnées de règlement</text>
-<text x="44" y="163" font-size="23" fill="#657479">Deux assurés · deux sinistres habitation</text>
-<path d="M44 186H856" stroke="#cbd2ce" stroke-width="2"/>
-<text x="44" y="221" font-size="21" fill="#637475">Dossier H-201 · Alex Martin</text>
-<text x="44" y="258" font-size="32" font-weight="700">Dégât des eaux · 18.10.2026</text>
-<text x="44" y="300" font-size="21" fill="#637475">Compte de remboursement</text>
-<text x="44" y="337" font-size="32" font-weight="700">LU•• •••• •••• •••• 7849</text>
-<text x="44" y="379" font-size="21" fill="#637475">Dossier H-366 · Charlie Martin</text>
-<text x="44" y="416" font-size="32" font-weight="700">Bris de vitre · 31.10.2026</text>
-<text x="44" y="458" font-size="21" fill="#637475">Compte de remboursement</text>
-<text x="44" y="495" font-size="32" font-weight="700">LU•• •••• •••• •••• 7849</text>
-<path d="M44 593H856" stroke="#cbd2ce"/>
-<text x="44" y="621" font-size="17" fill="#87928c">Extrait pour le jeu · document et identités fictifs</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="660" viewBox="0 0 960 660">
+<rect width="960" height="660" fill="#f3f5f8"/>
+<g font-family="Arial,sans-serif">
+<rect x="0" y="0" width="960" height="83" fill="#323b49"/>
+<text x="35" y="51" font-size="27" font-weight="700" fill="#fff" text-anchor="start">RÈGLEMENT DES SINISTRES</text>
+<rect x="32" y="122" width="434" height="459" fill="#fff" stroke="#d5dce3" stroke-width="2"/>
+<text x="54" y="171" font-size="27" font-weight="700" fill="#526783" text-anchor="start">DOSSIER H-201</text>
+<text x="54" y="235" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Alex Martin</text>
+<text x="54" y="281" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Dégât des eaux</text>
+<text x="54" y="323" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Sinistre : 18/10/2026</text>
+<path d="M54 355L444 355" stroke="#d7dadd" stroke-width="2"/>
+<text x="54" y="404" font-size="17" font-weight="400" fill="#7c8793" text-anchor="start">COMPTE DE REMBOURSEMENT</text>
+<text x="54" y="449" font-size="23" font-weight="600" fill="#283038" text-anchor="start">LU•• •••• •••• •••• 7849</text>
+<text x="54" y="537" font-size="21" font-weight="400" fill="#7c8793" text-anchor="start">Pièce bancaire jointe</text>
+<rect x="494" y="122" width="434" height="459" fill="#fff" stroke="#d5dce3" stroke-width="2"/>
+<text x="516" y="171" font-size="27" font-weight="700" fill="#526783" text-anchor="start">DOSSIER H-366</text>
+<text x="516" y="235" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Charlie Martin</text>
+<text x="516" y="281" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Bris de vitre</text>
+<text x="516" y="323" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Sinistre : 31/10/2026</text>
+<path d="M516 355L906 355" stroke="#d7dadd" stroke-width="2"/>
+<text x="516" y="404" font-size="17" font-weight="400" fill="#7c8793" text-anchor="start">COMPTE DE REMBOURSEMENT</text>
+<text x="516" y="449" font-size="23" font-weight="600" fill="#283038" text-anchor="start">LU•• •••• •••• •••• 7849</text>
+<text x="516" y="537" font-size="21" font-weight="400" fill="#7c8793" text-anchor="start">Pièce bancaire jointe</text>
+<text x="35" y="621" font-size="18" font-weight="400" fill="#7c8793" text-anchor="start">Vue de consultation · coordonnées masquées</text>
+<text x="36" y="640" font-size="14" font-weight="400" fill="#8d9598" text-anchor="start">Document fictif · jeu de démonstration</text>
+</g></svg>

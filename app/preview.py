@@ -23,7 +23,7 @@ def main():
         except FileExistsError:
             pass
     config = Config(data/'mia.sqlite3', key.read_text().strip(), origin=f'http://localhost:{args.port}')
-    with make_server('127.0.0.1', args.port, create_app(config)) as server:
+    with make_server('127.0.0.1', args.port, create_app(config, preview=True)) as server:
         print(f'MIA Fraude: http://localhost:{args.port}/fraude', flush=True)
         print(f'Recommander: http://localhost:{args.port}/recommander', flush=True)
         server.serve_forever()

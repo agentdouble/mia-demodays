@@ -34,22 +34,28 @@ export function avatar(look, size = 16) {
 
 export const PLAYER = { skin: 1, hair: "#2A1B12", style: "short", shirt: "#ffc45f" };
 
-export function robot() {
-    const c = document.createElement("canvas");
-    c.width = c.height = 16;
-    const g = c.getContext("2d");
-    const px = (x, y, col, w = 1, h = 1) => { g.fillStyle = col; g.fillRect(x, y, w, h); };
-    px(7, 0, "#ff6340", 2, 1); px(7, 1, "#bca88e", 2, 2);         // antenne
-    px(3, 3, "#ffe2bb", 10, 8); px(3, 10, "#bca88e", 10, 1);      // tête
-    px(2, 5, "#bca88e", 1, 3); px(13, 5, "#bca88e", 1, 3);        // oreilles
-    px(4, 5, "#130d09", 8, 3);                                     // visière
-    px(5, 6, "#ff913d", 2, 1); px(9, 6, "#ff913d", 2, 1);          // yeux
-    for (let x = 5; x < 11; x += 2) px(x, 9, "#130d09");           // grille
-    px(6, 11, "#bca88e", 4, 1);                                    // cou
-    px(2, 12, "#78401d", 12, 4); px(6, 13, "#ff913d", 4, 2);       // corps
-    return c;
-  }
-
+/* Three paper sheets, drawn on the same 16 × 16 pixel grid as the avatars. */
+export function documents() {
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = 16;
+  canvas.setAttribute("aria-label", "Une pile de documents");
+  canvas.setAttribute("role", "img");
+  const g = canvas.getContext("2d");
+  const px = (x, y, color, width, height) => {
+    g.fillStyle = color;
+    g.fillRect(x, y, width, height);
+  };
+  px(1, 1, "#78401d", 10, 12);
+  px(3, 2, "#ff913d", 10, 12);
+  px(5, 3, "#fff0d6", 10, 12);
+  px(12, 3, "#130d09", 3, 3);
+  px(12, 4, "#ffc45f", 2, 2);
+  px(7, 6, "#ff913d", 3, 1);
+  px(7, 8, "#78401d", 6, 1);
+  px(7, 10, "#78401d", 6, 1);
+  px(7, 12, "#78401d", 4, 1);
+  return canvas;
+}
 
 export function lookFor(tri) {
   const seed = [...tri].reduce((a,c) => a*31+c.charCodeAt(0), 7);

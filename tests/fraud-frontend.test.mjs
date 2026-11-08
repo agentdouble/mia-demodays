@@ -52,3 +52,10 @@ test('session network failure is retryable; server errors retain codes for appro
   await assert.rejects(api.post('claim',{tri:'ABC'}),e=>e.code==='taken');
   assert.equal(attempts,2);
 });
+
+test('magnifier keeps clue coordinates correct after zoom and panning',()=>{
+  // At ×4, a large part of the document lies outside the visible scroll area.
+  const rect=geometry.imageRect({left:-350,top:-640,width:1200,height:1600},900,1200);
+  const p=geometry.imagePoint(rect.left+rect.width*.72,rect.top+rect.height*.54,rect);
+  assert(Math.abs(p.x-.72)<1e-9);assert(Math.abs(p.y-.54)<1e-9);
+});

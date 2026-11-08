@@ -1,12 +1,13 @@
 import { api } from "./api.js";
 import { lockGameViewport } from "./viewport.js";
-import { avatar, robot, PLAYER, lookFor, sound } from "./arcade.js";
+import { avatar, documents, PLAYER, lookFor, sound } from "./arcade.js";
 import { imageRect, imagePoint, swipeDecision } from "./geometry.js";
 
 const $=id=>document.getElementById(id);
 const screen=$("screen"),stage=$("stage"),hud=$("hud"),notice=$("notice"),viewer=$("viewer");
 const pips=Array.from({length:6},()=>$("pips").appendChild(document.createElement("i")));
 const sfx=sound(),reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let preview=false;
 let state=null, ownTri=null, panel=0, busy=false, raf=0, receivedAt=0, boardInterval=null, mode="title";
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const clock=ms=>{const s=ms/1000;return `${String(Math.floor(s/60)).padStart(2,"0")}:${(s%60).toFixed(1).padStart(4,"0")}`;};
@@ -14,8 +15,40 @@ lockGameViewport(screen,stage,$("helpPanel"));
 function muteIcon() { $("mute").textContent=sfx.muted?"♪×":"♪";$("mute").setAttribute("aria-label",sfx.muted?"Activer le son":"Couper le son"); }
 $("mute").onclick=()=>{sfx.toggle();muteIcon();};muteIcon();
 $("helpClose").onclick=()=>{$("helpPanel").hidden=true;$("help")?.focus({preventScroll:true});};
+let viewerZoom = 1;
 $("viewerClose").onclick=()=>viewer.close();
+$("viewerZoom").onclick=()=>setViewerZoom(viewerZoom===4?1:viewerZoom*2);
+function setViewerZoom(value) {
+  const media=$("zoomMedia");
+  viewerZoom=value;
+  media.classList.toggle("zoomed",value>1);
+  media.style.setProperty("--zoom",String(value));
+  media.scrollTop=0;media.scrollLeft=0;
+  $("viewerZoom").textContent=`ZOOM ×${value}`;
+  $("viewerZoom").setAttribute("aria-label",`Zoom : ${value} fois`);
+}
+
 viewer.addEventListener("click",e=>{if(e.target===viewer)viewer.close();});
+// Mouse drag pans the inspector; touch devices use their native scroll gesture.
+let pan=null;
+$("zoomMedia").addEventListener("pointerdown",e=>{
+  if(e.pointerType!=="mouse"||viewerZoom===1)return;
+  pan={x:e.clientX,y:e.clientY,left:$("zoomMedia").scrollLeft,top:$("zoomMedia").scrollTop,moved:false};
+});
+$("zoomMedia").addEventListener("pointermove",e=>{
+  if(!pan||!e.buttons){pan=null;return;}
+  if(Math.hypot(e.clientX-pan.x,e.clientY-pan.y)>6)pan.moved=true;
+  if(!pan.moved)return;
+  e.preventDefault();
+  $("zoomMedia").setPointerCapture(e.pointerId);
+  $("zoomMedia").scrollLeft=pan.left+pan.x-e.clientX;
+  $("zoomMedia").scrollTop=pan.top+pan.y-e.clientY;
+  const surface=$("zoomMedia").querySelector(".image-surface");
+  if(surface)surface.dataset.dragged="true";
+});
+$("zoomMedia").addEventListener("pointerup",()=>{pan=null;});
+$("zoomMedia").addEventListener("pointercancel",()=>{pan=null;});
+
 function clear() { screen.dataset.phase="";cancelAnimationFrame(raf);clearInterval(boardInterval);boardInterval=null;notice.replaceChildren();stage.replaceChildren();hud.hidden=true; }
 function message(text) { notice.textContent=text; }
 const errors={taken:"Ce trigramme est déjà pris. Essayez-en un autre.",played:"Une partie est déjà associée à ce navigateur.",expired:"La partie a expiré après 30 minutes. Rechargez la page pour recommencer.",limited:"Beaucoup de connexions. Réessayez dans une minute.",forbidden:"La session doit être actualisée. Rechargez la page.",too_fast:"Un peu trop rapide. Réessayez.",invalid_trigram:"Saisissez trois lettres de A à Z.",unavailable:"Le jeu est momentanément indisponible."};
@@ -36,16 +69,17 @@ function title() {
   clear();mode="title";
   stage.innerHTML=`<div class="title"><h1 class="logo"><b>MIA</b><span>FRAUDE</span></h1>
     <div class="duel"><div class="fighter"><span id="player"></span><strong>VOUS</strong></div>
-    <div class="vs-tag">VS</div><div class="fighter mia"><span id="bot"></span><strong>LES PIÈCES</strong></div></div>
+    <div class="vs-tag">VS</div><div class="fighter mia"><span id="bot"></span><strong>LES DOCUMENTS</strong></div></div>
     <div class="brief"><p class="ask">Saurez-vous repérer ce qui mérite une vérification ?</p><p class="title-meta">6 dossiers · votre sens de l’observation</p></div>
     <div class="actions"><button class="start" id="start"><span>START</span></button><button class="help-btn" id="help">RÈGLES</button></div>
     <button class="link" id="board">CLASSEMENT</button></div>`;
-  $("player").replaceWith(avatar(PLAYER));$("bot").replaceWith(robot());
+  $("player").replaceWith(avatar(PLAYER));$("bot").replaceWith(documents());
   $("start").onclick=begin;$("help").onclick=()=>{$("helpPanel").hidden=false;$("helpClose").focus();};$("board").onclick=leaderboard;
 }
 function begin() {
   return run(async()=>{
     const session=await api.session();
+    preview=session.preview===true;
     if(session.participation) {
       if(session.participation.status==="done")return returning(session.participation.tri);
       state=await api.post("start",{});receivedAt=performance.now();return render();
@@ -55,12 +89,15 @@ function begin() {
 }
 function returning(tri) {
   ownTri=tri;clear();mode="returning";
-  stage.innerHTML=`<div class="mission"><h2>PARTIE TERMINÉE</h2><div id="returnAvatar"></div><p>${esc(tri)}, vous avez déjà joué.</p><div class="race">Votre score est enregistré.</div><button class="start" id="board">CLASSEMENT</button><button class="link" id="back">ACCUEIL</button></div>`;
-  $("returnAvatar").replaceWith(avatar(lookFor(tri)));$("board").onclick=leaderboard;$("back").onclick=title;
+  stage.innerHTML=`<div class="mission"><h2>PARTIE TERMINÉE</h2><div id="returnAvatar"></div><p>${esc(tri)}, vous avez déjà joué.</p><div class="race">Votre score est enregistré.</div><button class="start" id="board">CLASSEMENT</button>${preview?'<button class="help-btn" id="replay">NOUVEL ESSAI</button>':""}<button class="link" id="back">ACCUEIL</button></div>`;
+  $("returnAvatar").replaceWith(avatar(lookFor(tri)));$("board").onclick=leaderboard;$("back").onclick=title;if(preview)$("replay").onclick=replay;
+}
+function replay() {
+  return run(async()=>{await api.post("replay",{});state=null;ownTri=null;panel=0;entry();},replay);
 }
 function entry() {
   clear();mode="entry";
-  stage.innerHTML=`<form class="entry" id="entry"><h2 class="entry-label">VOTRE TRIGRAMME</h2><p>Trois lettres pour le classement.<br>Une partie par navigateur et par trigramme.</p>
+  stage.innerHTML=`<form class="entry" id="entry"><h2 class="entry-label">VOTRE TRIGRAMME</h2><p>Trois lettres pour le classement.<br>${preview?"Aperçu local : vous pouvez refaire un essai.":"Une partie par navigateur et par trigramme."}</p>
   <div class="slots"><span></span><span></span><span></span><input id="tri" aria-label="Trigramme de trois lettres" maxlength="3" pattern="[A-Za-z]{3}" autocomplete="off" autocapitalize="characters" spellcheck="false" required></div>
   <p class="entry-msg" id="entryMessage"></p><button class="start" id="claim" disabled>CONTINUER</button><button type="button" class="link" id="back">RETOUR</button></form>`;
   const input=$("tri"),slots=[...document.querySelectorAll(".slots span")];
@@ -112,7 +149,7 @@ function tick() {
 function tabs(container) {
   container.replaceChildren();state.case.panels.forEach((p,i)=>{
     const b=document.createElement("button");b.role="tab";b.setAttribute("aria-selected",i===panel?"true":"false");b.textContent=`${i+1}. ${p.label}`;
-    b.onclick=()=>{if(busy)return;panel=i;tabs($("tabs"));displayMedia($("media"));if(viewer.open){tabs($("viewerTabs"));displayMedia($("zoomMedia"));$("viewerTitle").textContent=state.case.panels[panel].label;}};
+    b.onclick=()=>{if(busy)return;panel=i;setViewerZoom(1);tabs($("tabs"));displayMedia($("media"));if(viewer.open){tabs($("viewerTabs"));displayMedia($("zoomMedia"));$("viewerTitle").textContent=state.case.panels[panel].label;}};
     container.appendChild(b);
   });
 }
@@ -136,9 +173,15 @@ function displayMedia(container) {
     surface.tabIndex=0;surface.setAttribute("role","button");surface.setAttribute("aria-label","Choisir un indice dans l’image. Flèches pour déplacer le repère, Entrée pour valider.");
     let cursor={x:.5,y:.5};
     surface.onclick=e=>{
-      if(busy)return;const rect=imageRect(surface.getBoundingClientRect(),img.naturalWidth,img.naturalHeight);
+      if(busy||surface.dataset.dragged==="true"){surface.dataset.dragged="false";return;}const rect=imageRect(surface.getBoundingClientRect(),img.naturalWidth,img.naturalHeight);
       const point=imagePoint(e.clientX,e.clientY,rect);if(point)selectClue(point);
     };
+    // Scrolling in the magnifier must not submit the finger's final position.
+    let down=null;
+    surface.addEventListener("pointerdown",e=>{down={x:e.clientX,y:e.clientY};surface.dataset.dragged="false";});
+    surface.addEventListener("pointermove",e=>{if(down&&Math.hypot(e.clientX-down.x,e.clientY-down.y)>8)surface.dataset.dragged="true";});
+    surface.addEventListener("pointercancel",()=>{surface.dataset.dragged="true";down=null;});
+    surface.addEventListener("pointerup",()=>{down=null;});
     surface.onkeydown=e=>{
       const d={ArrowLeft:[-.05,0],ArrowRight:[.05,0],ArrowUp:[0,-.05],ArrowDown:[0,.05]}[e.key];
       if(d){e.preventDefault();cursor={x:Math.max(0,Math.min(1,cursor.x+d[0])),y:Math.max(0,Math.min(1,cursor.y+d[1]))};
@@ -149,6 +192,7 @@ function displayMedia(container) {
 }
 function selectClue(point) { if(viewer.open)viewer.close();send("locate",{index:state.index,panel,...point}); }
 function openViewer() {
+  setViewerZoom(1);
   $("viewerTitle").textContent=state.case.panels[panel].label;
   $("viewerHint").textContent=state.phase==="locate"?"Touchez directement l’indice dans l’image. Un seul essai.":state.phase==="feedback"?"Les zones encadrées expliquent la correction.":"Consultez les pièces avant de décider. Le chrono continue.";
   tabs($("viewerTabs"));displayMedia($("zoomMedia"));viewer.showModal();$("viewerClose").focus();
@@ -172,9 +216,18 @@ function bindSwipe() {
 }
 function finale() {
   clear();mode="finale";sfx.play("end");const r=state.result;
-  stage.innerHTML=`<div class="finale"><h2 class="entry-label">MISSION TERMINÉE</h2><div class="grade">${r.grade}</div><div id="finalAvatar"></div><div class="result-score"><span id="score">0</span><small> / 6 décisions</small></div><div class="result-extra"><b>${r.bonus}/6 indices</b><span>${clock(r.timeMs)}</span></div><p class="f-line">${r.score===6?"Vous avez fait les bons rapprochements.":"Chaque pièce compte. Les explications font partie du jeu."}</p><p class="control-note">${esc(r.tri)} · temps des décisions uniquement</p><button class="start" id="board">CLASSEMENT</button></div>`;
-  $("finalAvatar").replaceWith(avatar(lookFor(r.tri)));$("board").onclick=leaderboard;
+  stage.innerHTML=`<div class="finale"><h2 class="entry-label">MISSION TERMINÉE</h2><div class="grade">${r.grade}</div><div id="finalAvatar"></div><div class="result-score"><span id="score">0</span><small> / 6 décisions</small></div><div class="result-extra"><b>${r.bonus}/6 indices</b><span>${clock(r.timeMs)}</span></div><div class="final-rank" id="finalRank" aria-live="polite">Chargement du classement…</div><p class="control-note">${esc(r.tri)} · temps des décisions uniquement</p><button class="start" id="board">VOIR LE PODIUM</button>${preview?'<button class="link" id="replay">NOUVEL ESSAI</button>':""}</div>`;
+  $("finalAvatar").replaceWith(avatar(lookFor(r.tri)));$("board").onclick=leaderboard;if(preview)$("replay").onclick=replay;
+  finalRank(r.tri);
   let begin=performance.now();function count(t){const progress=reduce?1:Math.min(1,(t-begin)/800);$("score").textContent=String(Math.round(r.score*progress));if(progress<1)raf=requestAnimationFrame(count);else document.querySelector(".result-score").classList.add("score-pulse");}raf=requestAnimationFrame(count);
+}
+async function finalRank(tri) {
+  try {
+    const {rows}=await api.get("leaderboard");
+    if(mode!=="finale")return;
+    const place=rows.findIndex(row=>row.tri===tri)+1;
+    $("finalRank").innerHTML=place?`<b>${place===1?"1er":place+"e"}</b><span>sur ${rows.length} joueur${rows.length>1?"s":""}</span>`:"Votre score est enregistré.";
+  } catch {if(mode==="finale")$("finalRank").textContent="Votre score est enregistré.";}
 }
 async function leaderboard() {
   clear();mode="board";

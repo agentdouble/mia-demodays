@@ -464,3 +464,18 @@ dialog::backdrop {background:#000e;backdrop-filter:blur(4px);}
 .step.p2 .block {height:65px;}
 .step.p3 .block {height:45px;}
 .game-page .help {overflow-y:auto;touch-action:pan-y;}
+
+/* The inspector really magnifies documents, including on a narrow phone. */
+.viewer-tools {display:flex;align-items:center;gap:12px;flex:none;}
+.viewer-tools button {font-size:10px;padding:10px;white-space:nowrap;}
+.viewer-tools span {font-size:15px;color:var(--dim);line-height:1.15;}
+.zoom-media {overflow:auto;touch-action:pan-x pan-y;overscroll-behavior:contain;}
+.zoom-media.zoomed {display:block;}
+.zoom-media.zoomed .image-surface {
+  width:calc(min(100cqw, calc(100cqh * var(--ratio,1.5))) * var(--zoom,2));
+  max-width:none;margin:auto;
+}
+.final-rank {display:flex;align-items:baseline;gap:12px;justify-content:center;min-height:38px;color:var(--dim);font-size:21px;}
+.final-rank b {font-family:var(--arcade);font-weight:400;font-size:27px;color:var(--gold);}
+.fighter.mia strong {font-size:10px;line-height:1.4;}
+.finale {gap:18px;}

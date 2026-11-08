@@ -1,18 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640">
-<rect width="900" height="640" fill="#faf9f4"/>
-<path d="M0 0h900v12H0z" fill="#263c42"/>
-<g font-family="Arial,sans-serif" fill="#25383c">
-<text x="44" y="65" font-size="23" font-weight="700">RELEVÉ D’IDENTITÉ BANCAIRE</text>
-<text x="44" y="122" font-size="40" font-weight="700">Attestation de compte</text>
-<text x="44" y="163" font-size="23" fill="#657479">Émise le 02.11.2026 · extrait</text>
-<path d="M44 186H856" stroke="#cbd2ce" stroke-width="2"/>
-<text x="44" y="221" font-size="21" fill="#637475">Titulaire 1</text>
-<text x="44" y="258" font-size="32" font-weight="700">Alex Martin</text>
-<text x="44" y="300" font-size="21" fill="#637475">Titulaire 2</text>
-<text x="44" y="337" font-size="32" font-weight="700">Charlie Martin</text>
-<text x="44" y="379" font-size="21" fill="#637475">Nature du compte</text>
-<text x="44" y="416" font-size="32" font-weight="700">Compte joint · deux cotitulaires</text>
-<text x="44" y="458" font-size="21" fill="#637475">IBAN (masqué pour le jeu)</text>
-<text x="44" y="495" font-size="32" font-weight="700">LU•• •••• •••• •••• 7849</text>
-<path d="M44 593H856" stroke="#cbd2ce"/>
-<text x="44" y="621" font-size="17" fill="#87928c">Extrait pour le jeu · document et identités fictifs</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="830" viewBox="0 0 900 830">
+<rect width="900" height="830" fill="#fcfbf7"/>
+<g font-family="Arial,sans-serif">
+<text x="54" y="71" font-size="25" font-weight="700" fill="#4b575d" text-anchor="start">SERVICES BANCAIRES</text>
+<path d="M54 104L846 104" stroke="#4b575d" stroke-width="2"/>
+<text x="54" y="169" font-size="36" font-weight="700" fill="#283038" text-anchor="start">ATTESTATION DE COMPTE</text>
+<text x="54" y="221" font-size="23" font-weight="400" fill="#788285" text-anchor="start">Émise le 02 novembre 2026</text>
+<text x="54" y="294" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Nous attestons que les personnes désignées ci-dessous</text>
+<text x="54" y="333" font-size="25" font-weight="400" fill="#283038" text-anchor="start">sont cotitulaires du compte indiqué sur cette attestation.</text>
+<text x="54" y="411" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">TITULAIRES</text>
+<text x="54" y="445" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Alex Martin et Charlie Martin</text>
+<path d="M54 459L846 459" stroke="#d7dadd" stroke-width="2"/>
+<text x="54" y="515" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">TYPE DE COMPTE</text>
+<text x="54" y="549" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Compte joint</text>
+<path d="M54 563L846 563" stroke="#d7dadd" stroke-width="2"/>
+<text x="54" y="619" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">IBAN (MASQUÉ POUR LE JEU)</text>
+<text x="54" y="653" font-size="29" font-weight="600" fill="#283038" text-anchor="start">LU•• •••• •••• •••• 7849</text>
+<path d="M54 667L846 667" stroke="#d7dadd" stroke-width="2"/>
+<text x="54" y="756" font-size="20" font-weight="400" fill="#788285" text-anchor="start">Document délivré à la demande des titulaires.</text>
+<text x="36" y="810" font-size="14" font-weight="400" fill="#8d9598" text-anchor="start">Document fictif · jeu de démonstration</text>
+</g></svg>

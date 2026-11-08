@@ -1,18 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640">
-<rect width="900" height="640" fill="#faf9f4"/>
-<path d="M0 0h900v12H0z" fill="#263c42"/>
-<g font-family="Arial,sans-serif" fill="#25383c">
-<text x="44" y="65" font-size="23" font-weight="700">EXPERTISE AUTOMOBILE / Dossier A-208</text>
-<text x="44" y="122" font-size="40" font-weight="700">Compte rendu de contrôle</text>
-<text x="44" y="163" font-size="23" fill="#657479">Visite du 02.11.2026 · pièce jointe 2/2</text>
-<path d="M44 186H856" stroke="#cbd2ce" stroke-width="2"/>
-<text x="44" y="221" font-size="21" fill="#637475">Véhicule examiné</text>
-<text x="44" y="258" font-size="32" font-weight="700">Coupé noir · numéro de série contrôlé</text>
-<text x="44" y="300" font-size="21" fill="#637475">Constat sur place</text>
-<text x="44" y="337" font-size="32" font-weight="700">Aile, phare et portière côté gauche</text>
-<text x="44" y="379" font-size="21" fill="#637475">Comparaison avec la déclaration</text>
-<text x="44" y="416" font-size="32" font-weight="700">Dommages et véhicule concordants</text>
-<text x="44" y="458" font-size="21" fill="#637475">Éléments examinés</text>
-<text x="44" y="495" font-size="32" font-weight="700">Photographie + constat + inspection</text>
-<path d="M44 593H856" stroke="#cbd2ce"/>
-<text x="44" y="621" font-size="17" fill="#87928c">Extrait pour le jeu · document et identités fictifs</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+<rect width="900" height="700" fill="#f2f1eb"/>
+<g font-family="Arial,sans-serif">
+<rect x="0" y="0" width="18" height="700" fill="#566561"/>
+<text x="46" y="60" font-size="23" font-weight="700" fill="#283038" text-anchor="start">BUREAU DE CONTRÔLE AUTOMOBILE</text>
+<text x="46" y="119" font-size="38" font-weight="700" fill="#283038" text-anchor="start">RAPPORT DE VISITE</text>
+<text x="46" y="158" font-size="23" font-weight="400" fill="#283038" text-anchor="start">Référence A-208 / visite du 02 novembre 2026</text>
+<path d="M46 185L854 185" stroke="#d7dadd" stroke-width="2"/>
+<text x="46" y="228" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">VÉHICULE EXAMINÉ</text>
+<text x="46" y="262" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Coupé noir</text>
+<path d="M46 276L406 276" stroke="#d7dadd" stroke-width="2"/>
+<text x="470" y="228" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">IDENTIFICATION</text>
+<text x="470" y="262" font-size="29" font-weight="600" fill="#283038" text-anchor="start">N° de série contrôlé</text>
+<path d="M470 276L830 276" stroke="#d7dadd" stroke-width="2"/>
+<text x="46" y="336" font-size="26" font-weight="700" fill="#283038" text-anchor="start">Observations de l’expert</text>
+<text x="46" y="380" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Choc latéral gauche : aile, phare et portière.</text>
+<text x="46" y="419" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Les déformations suivent le même axe d’impact.</text>
+<text x="46" y="458" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Photographies et constat examinés lors de la visite.</text>
+<path d="M46 490L854 490" stroke="#d7dadd" stroke-width="2"/>
+<text x="46" y="533" font-size="21" font-weight="400" fill="#66766b" text-anchor="start">Rapprochement avec les pièces du dossier</text>
+<text x="46" y="574" font-size="30" font-weight="600" fill="#283038" text-anchor="start">Dommages et véhicule concordants.</text>
+<text x="46" y="632" font-size="20" font-weight="400" fill="#66766b" text-anchor="start">Visite réalisée sur place / compte rendu clos</text>
+<text x="36" y="680" font-size="14" font-weight="400" fill="#8d9598" text-anchor="start">Document fictif · jeu de démonstration</text>
+</g></svg>

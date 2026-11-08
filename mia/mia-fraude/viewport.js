@@ -25,7 +25,11 @@ export function lockGameViewport(screen, stage, helpPanel) {
   addEventListener("resize", schedule);
   document.fonts.ready.then(schedule);
 
-  const block = event => event.preventDefault();
+  const block = event => {
+    // Keep page zoom locked, but let the magnifier and rules scroll normally.
+    if (event.type === "wheel" && !event.ctrlKey && event.target.closest?.(".zoom-media, .help")) return;
+    event.preventDefault();
+  };
   for (const type of ["gesturestart", "gesturechange", "gestureend", "wheel"]) {
     document.addEventListener(type, block, { passive: false });
   }

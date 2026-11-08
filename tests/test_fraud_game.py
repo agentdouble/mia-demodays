@@ -3,6 +3,7 @@ from contextlib import closing
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
+from urllib.parse import urlsplit
 import importlib.util
 import json
 import sqlite3
@@ -165,6 +166,14 @@ class FraudTests(unittest.TestCase):
         self.assertIn(b'./geometry.js?v=',script)
         self.assertEqual(self.b.request('/fraude/donnees')['status'],200)
 
+    def test_document_updates_are_versioned_without_mutating_case_definitions(self):
+        state=self.start()
+        for panel in state['case']['panels']:
+            url=urlsplit('/fraude/assets/'+panel['src'])
+            self.assertRegex(url.query,r'^v=[0-9a-f]{16}$')
+            self.assertEqual(self.b.request(url.path)['status'],200)
+        self.assertTrue(all('?' not in p['src'] for c in CASES for p in c['panels']))
+
     def test_shared_wifi_quota_does_not_affect_recommander(self):
         for _ in range(120):self.assertEqual(self.b.api('claim',{'tri':'!'} )['status'],400)
         self.assertEqual(self.b.api('claim',{'tri':'ABC'})['status'],429)
@@ -198,6 +207,34 @@ class FraudTests(unittest.TestCase):
             self.assertEqual(Browser(isolated).api('health')['status'],200)
         self.assertEqual(FraudBrowser(isolated).request('/fraude')['status'],200)
         with self.assertRaises(ValueError):database_path(Config(Path(self.temp.name)/'fraude.sqlite3','s'*48))
+
+    def test_replay_is_only_available_in_explicit_local_preview(self):
+        self.assertFalse(self.b.session()['json']['preview'])
+        self.assertEqual(self.b.api('replay', {})['status'],404)
+        self.assertEqual(self.b.request('/fraude/api/replay',{},headers={'QUERY_STRING':'preview=1'})['status'],404)
+        from app.fraud_http import FraudApplication
+        with self.assertRaises(ValueError):
+            FraudApplication(Config(Path(self.temp.name)/'secure.sqlite3','s'*48),preview=True)
+
+    def test_preview_replay_preserves_other_players_and_recommander(self):
+        preview=create_app(self.config,preview=True,clock=lambda:self.now)
+        b=FraudBrowser(preview);self.assertTrue(b.session()['json']['preview'])
+        b.api('claim',{'tri':'ABC'});b.api('start',{})
+        # The replay button must also work for sessions that already finished.
+        with preview.fraud.store.transaction() as db:
+            db.execute('UPDATE games SET finished=?,score=4,bonus=2,time_ms=2000,grade="C" WHERE tri="ABC"',(self.now,))
+        self.assertEqual(b.session()['json']['participation']['status'],'done')
+        other=FraudBrowser(preview);other.session();other.api('claim',{'tri':'DEF'})
+        old=Browser(preview);old.session();old.api('claim',{'tri':'ABC'})
+        self.assertEqual(b.api('replay',{},headers={'HTTP_X_CSRF_TOKEN':''})['status'],403)
+        self.assertEqual(b.api('replay',{'all':True})['status'],400)
+        self.assertEqual(b.api('replay',{})['status'],200)
+        self.assertEqual(b.api('replay',{})['status'],200)
+        self.assertIsNone(b.session()['json']['participation'])
+        self.assertEqual(other.session()['json']['participation']['tri'],'DEF')
+        self.assertEqual(old.session()['json']['participation']['tri'],'ABC')
+        self.assertEqual(b.api('claim',{'tri':'ABC'})['status'],200)
+        self.assertEqual(b.api('start',{})['json']['phase'],'decision')
 
     def test_backups_cover_both_games_and_restore(self):
         self.start();old=Browser(self.app);old.session();old.api('claim',{'tri':'OLD'})

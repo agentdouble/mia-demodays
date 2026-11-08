@@ -10,9 +10,10 @@ from .http import create_app as recommander_app
 
 
 class Portal:
-    def __init__(self, config, **kwargs):
+    def __init__(self, config, *, preview=False, **kwargs):
         self.recommander = recommander_app(config, **kwargs)
         self.config, self.kwargs = config, kwargs
+        self.preview = preview
         self.fraud = None
         self.lock = Lock()
 
@@ -25,7 +26,7 @@ class Portal:
                 with self.lock:
                     if self.fraud is None:
                         from .fraud_http import FraudApplication
-                        self.fraud = FraudApplication(self.config, **self.kwargs)
+                        self.fraud = FraudApplication(self.config, preview=self.preview, **self.kwargs)
         except Exception:
             logging.exception("Fraud application initialization failed")
             start_response("503 Service Unavailable", [("Content-Type", "application/json"),

@@ -1,50 +1,181 @@
 [
   {
-    "title":"Photo d’un accident",
-    "context":"Une photo accompagne la déclaration d’un choc à l’avant gauche. Examinez aussi ce qui entoure le véhicule.",
-    "panels":[{"src":"case-01-a.webp","label":"Photo reçue","alt":"Voiture grise endommagée et personne debout près de la portière."}],
-    "review":true,
-    "explanation":"La main comporte un doigt en trop. Cette image a été générée pour le jeu avec une anomalie volontaire. Ce détail justifie une vérification ; à lui seul, il ne prouve ni une génération par IA ni une fraude dans un vrai dossier.",
-    "zones":[{"panel":0,"x":0.755,"y":0.115,"w":0.16,"h":0.225,"label":"Anatomie de la main"}]
+    "title": "Photo d’un accident",
+    "context": "Photographie jointe à une déclaration de choc à l’avant gauche.",
+    "panels": [
+      {
+        "src": "case-01-a.webp",
+        "label": "Photo reçue",
+        "alt": "Voiture grise endommagée et personne debout près de la portière."
+      }
+    ],
+    "review": true,
+    "explanation": "La main comporte un doigt en trop. Cette image a été générée pour le jeu avec une anomalie volontaire. Ce détail justifie une vérification ; à lui seul, il ne prouve ni une génération par IA ni une fraude dans un vrai dossier.",
+    "zones": [
+      {
+        "panel": 0,
+        "x": 0.718,
+        "y": 0.28,
+        "w": 0.055,
+        "h": 0.065,
+        "label": "Doigt supplémentaire sur la main"
+      }
+    ]
   },
   {
-    "title":"Des dégâts impressionnants",
-    "context":"Un coupé présente des dommages importants. La photographie et le compte rendu de contrôle sont au dossier.",
-    "panels":[{"src":"case-02-a.webp","label":"Photo du véhicule","alt":"Coupé noir fortement endommagé sur le côté gauche."},{"src":"case-02-b.svg","label":"Compte rendu","alt":"Extrait du compte rendu de contrôle automobile."}],
-    "review":false,
-    "explanation":"L’importance des dégâts n’est pas un indice de fraude. Le contrôle du véhicule et des pièces est concordant dans ce scénario. La photo est une photographie documentée de M 93, pas une image générée. Aucun élément fourni ne motive une alerte supplémentaire.",
-    "zones":[{"panel":1,"x":0.04,"y":0.56,"w":0.84,"h":0.105,"label":"Contrôle concordant"}]
+    "title": "Des dégâts impressionnants",
+    "context": "La déclaration, une photographie et le rapport de visite sont au dossier.",
+    "panels": [
+      {
+        "src": "case-02-a.webp",
+        "label": "Photo du véhicule",
+        "alt": "Coupé noir fortement endommagé sur le côté gauche."
+      },
+      {
+        "src": "case-02-b.svg",
+        "label": "Compte rendu",
+        "alt": "Extrait du compte rendu de contrôle automobile."
+      }
+    ],
+    "review": false,
+    "explanation": "L’importance des dégâts n’est pas un indice de fraude. Le contrôle du véhicule et des pièces est concordant dans ce scénario. La photo est une photographie documentée de M 93, pas une image générée. Aucun élément fourni ne motive une alerte supplémentaire.",
+    "zones": [
+      {
+        "panel": 1,
+        "x": 0.045,
+        "y": 0.745,
+        "w": 0.79,
+        "h": 0.09,
+        "label": "Contrôle concordant"
+      }
+    ]
   },
   {
-    "title":"Une facture à rembourser",
-    "context":"La facture et la déclaration portent le même nom et concernent la même réparation. Comparez les deux pièces.",
-    "panels":[{"src":"case-03-a.svg","label":"Déclaration","alt":"Déclaration automobile de Camille Leroy."},{"src":"case-03-b.svg","label":"Facture","alt":"Facture de l’Atelier des Peupliers."}],
-    "review":true,
-    "explanation":"La déclaration indique AB-274-CD, la facture AB-247-CD : deux chiffres sont inversés. Il faut demander une clarification au réparateur. Une erreur de saisie reste possible ; le beau document et le bon nom ne suffisent pas à lever l’incohérence.",
-    "zones":[{"panel":0,"x":0.04,"y":0.48,"w":0.44,"h":0.075,"label":"AB-274-CD"},{"panel":1,"x":0.04,"y":0.48,"w":0.44,"h":0.075,"label":"AB-247-CD"}]
+    "title": "Réparation automobile",
+    "context": "La déclaration et la facture du réparateur ont été reçues pour ce dossier.",
+    "panels": [
+      {
+        "src": "case-03-a.svg",
+        "label": "Déclaration",
+        "alt": "Déclaration automobile de Camille Leroy."
+      },
+      {
+        "src": "case-03-b.svg",
+        "label": "Facture",
+        "alt": "Facture de l’Atelier des Peupliers."
+      }
+    ],
+    "review": true,
+    "explanation": "La déclaration indique AB-274-CD, la facture AB-247-CD : deux chiffres sont inversés. Il faut demander une clarification au réparateur. Une erreur de saisie reste possible ; le beau document et le bon nom ne suffisent pas à lever l’incohérence.",
+    "zones": [
+      {
+        "panel": 0,
+        "x": 0.52,
+        "y": 0.475,
+        "w": 0.31,
+        "h": 0.06,
+        "label": "AB-274-CD"
+      },
+      {
+        "panel": 1,
+        "x": 0.08,
+        "y": 0.388,
+        "w": 0.56,
+        "h": 0.045,
+        "label": "AB-247-CD"
+      }
+    ]
   },
   {
-    "title":"Deux montants différents",
-    "context":"La réparation est facturée 1 440 €. Le justificatif bancaire ne montre que 1 040 €. Regardez le détail de la facture.",
-    "panels":[{"src":"case-04-a.svg","label":"Facture","alt":"Facture de la Carrosserie du Canal avec détail des règlements."},{"src":"case-04-b.svg","label":"Virement","alt":"Avis bancaire de virement pour solde de facture."}],
-    "review":false,
-    "explanation":"Un acompte de 400 € a déjà été payé. Les 1 040 € virés règlent le solde : 400 + 1 040 = 1 440 €. La différence est expliquée par les pièces ; elle ne justifie pas à elle seule un signalement.",
-    "zones":[{"panel":0,"x":0.04,"y":0.43,"w":0.77,"h":0.125,"label":"Acompte déjà reçu"}]
+    "title": "Justificatifs de règlement",
+    "context": "La facture de réparation est accompagnée d’un justificatif bancaire.",
+    "panels": [
+      {
+        "src": "case-04-a.svg",
+        "label": "Facture",
+        "alt": "Facture de la Carrosserie du Canal avec détail des règlements."
+      },
+      {
+        "src": "case-04-b.svg",
+        "label": "Virement",
+        "alt": "Avis bancaire de virement pour solde de facture."
+      }
+    ],
+    "review": false,
+    "explanation": "Un acompte de 400 € a déjà été payé. Les 1 040 € virés règlent le solde : 400 + 1 040 = 1 440 €. La différence est expliquée par les pièces ; elle ne justifie pas à elle seule un signalement.",
+    "zones": [
+      {
+        "panel": 0,
+        "x": 0.25,
+        "y": 0.87,
+        "w": 0.69,
+        "h": 0.03,
+        "label": "400 € déjà réglés le 27/10"
+      }
+    ]
   },
   {
-    "title":"Deux déclarations automobiles",
-    "context":"Dossiers de deux véhicules distincts, sinistrés à trois semaines d’écart. Comparez les photos reçues.",
-    "panels":[{"src":"case-05-a.webp","label":"A-517 · 12/10 · véhicule 1","alt":"Photo jointe au dossier du premier véhicule."},{"src":"case-05-b.svg","label":"A-862 · 03/11 · véhicule 2","alt":"Photo jointe au dossier du second véhicule."}],
-    "review":true,
-    "explanation":"Même rayure en Y, même enfoncement et même triangle rouge sur le mur : c’est la même photo, recadrée et éclaircie. Comme ces dossiers déclarent deux véhicules distincts, ce réemploi doit être vérifié. Une simple ressemblance entre voitures n’aurait pas suffi.",
-    "zones":[{"panel":0,"x":0.335,"y":0.495,"w":0.205,"h":0.31,"label":"Rayure en Y identique"},{"panel":1,"x":0.30,"y":0.49,"w":0.24,"h":0.36,"label":"Même rayure après recadrage"},{"panel":0,"x":0.738,"y":0.2,"w":0.065,"h":0.075,"label":"Repère sur le mur"},{"panel":1,"x":0.758,"y":0.17,"w":0.08,"h":0.095,"label":"Même repère"}]
+    "title": "Photographies de dommages",
+    "context": "Photographies transmises avec les demandes de prise en charge.",
+    "panels": [
+      {
+        "src": "case-05-a.svg",
+        "label": "Pièce A-517",
+        "alt": "Photographie de dommages avec sa référence et sa date de sinistre."
+      },
+      {
+        "src": "case-05-b.svg",
+        "label": "Pièce A-862",
+        "alt": "Autre photographie de dommages avec sa référence et sa date de sinistre."
+      }
+    ],
+    "review": true,
+    "explanation": "La rayure en Y et l’enfoncement sous le phare se retrouvent sous deux angles, sur des pièces datées du 12 octobre et du 3 novembre. Il faut vérifier si le même dommage est réclamé une seconde fois et si une réparation a eu lieu entre les deux. La ressemblance ne suffit pas à conclure à une fraude.",
+    "zones": [
+      {
+        "panel": 0,
+        "x": 0.335,
+        "y": 0.575,
+        "w": 0.205,
+        "h": 0.26,
+        "label": "Rayure et enfoncement"
+      },
+      {
+        "panel": 1,
+        "x": 0.77,
+        "y": 0.6,
+        "w": 0.15,
+        "h": 0.19,
+        "label": "Même dommage sous un autre angle"
+      }
+    ]
   },
   {
-    "title":"Un compte bancaire en commun",
-    "context":"Deux assurés demandent un remboursement sur le même compte. Une attestation bancaire est jointe aux dossiers.",
-    "panels":[{"src":"case-06-a.svg","label":"Les deux dossiers","alt":"Synthèse de deux dossiers avec leur compte de remboursement."},{"src":"case-06-b.svg","label":"Attestation bancaire","alt":"Attestation précisant les titulaires et le type de compte."}],
-    "review":false,
-    "explanation":"Alex et Charlie sont tous les deux titulaires du compte joint indiqué. Le rapprochement est réel, mais la pièce l’explique. Partager un IBAN n’est pas en soi un indice suffisant pour signaler ces deux dossiers.",
-    "zones":[{"panel":1,"x":0.04,"y":0.56,"w":0.79,"h":0.105,"label":"Compte joint confirmé"}]
+    "title": "Un compte bancaire en commun",
+    "context": "Les coordonnées de règlement et une attestation bancaire sont jointes aux dossiers.",
+    "panels": [
+      {
+        "src": "case-06-a.svg",
+        "label": "Les deux dossiers",
+        "alt": "Synthèse de deux dossiers avec leur compte de remboursement."
+      },
+      {
+        "src": "case-06-b.svg",
+        "label": "Attestation bancaire",
+        "alt": "Attestation précisant les titulaires et le type de compte."
+      }
+    ],
+    "review": false,
+    "explanation": "Alex et Charlie sont tous les deux titulaires du compte joint indiqué. Le rapprochement est réel, mais la pièce l’explique. Partager un IBAN n’est pas en soi un indice suffisant pour signaler ces deux dossiers.",
+    "zones": [
+      {
+        "panel": 1,
+        "x": 0.055,
+        "y": 0.62,
+        "w": 0.67,
+        "h": 0.065,
+        "label": "Compte joint et cotitulaires"
+      }
+    ]
   }
 ]

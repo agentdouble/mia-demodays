@@ -1,17 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640">
-<rect width="900" height="640" fill="#faf9f4"/>
-<path d="M0 0h900v12H0z" fill="#263c42"/>
-<g font-family="Arial,sans-serif" fill="#25383c">
-<text x="44" y="65" font-size="23" font-weight="700">CARROSSERIE DU CANAL</text>
-<text x="44" y="122" font-size="40" font-weight="700">Facture de réparation</text>
-<text x="44" y="163" font-size="23" fill="#657479">FC-1086 · 04.11.2026 · client : Sam Robin</text>
-<path d="M44 186H856" stroke="#cbd2ce" stroke-width="2"/>
-<text x="44" y="221" font-size="21" fill="#637475">Réparation et peinture</text>
-<text x="44" y="258" font-size="32" font-weight="700">Total TTC : 1 440,00 €</text>
-<text x="44" y="300" font-size="21" fill="#637475">Acompte reçu le 27.10.2026</text>
-<text x="44" y="337" font-size="32" font-weight="700">400,00 € · carte bancaire</text>
-<text x="44" y="379" font-size="21" fill="#637475">Solde à régler</text>
-<text x="44" y="416" font-size="32" font-weight="700">1 040,00 €</text>
-<text x="44" y="568" font-size="24">Facture : 1 440 € = acompte 400 € + solde 1 040 €</text>
-<path d="M44 593H856" stroke="#cbd2ce"/>
-<text x="44" y="621" font-size="17" fill="#87928c">Extrait pour le jeu · document et identités fictifs</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1180" viewBox="0 0 900 1180">
+<rect width="900" height="1180" fill="#fff"/>
+<g font-family="Arial,sans-serif">
+<rect x="45" y="42" width="65" height="65" fill="#264a41"/>
+<text x="77" y="87" font-size="38" font-weight="700" fill="#fff" text-anchor="middle">C</text>
+<text x="132" y="66" font-size="29" font-weight="700" fill="#264a41" text-anchor="start">CARROSSERIE DU CANAL</text>
+<text x="132" y="98" font-size="19" font-weight="400" fill="#65776b" text-anchor="start">Réparation automobile · devis et travaux</text>
+<text x="45" y="160" font-size="37" font-weight="700" fill="#283038" text-anchor="start">FACTURE FC-1086</text>
+<text x="855" y="156" font-size="25" font-weight="400" fill="#283038" text-anchor="end">04/11/2026</text>
+<text x="45" y="211" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">CLIENT</text>
+<text x="45" y="245" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Sam Robin</text>
+<path d="M45 259L395 259" stroke="#d7dadd" stroke-width="2"/>
+<text x="485" y="211" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">VÉHICULE</text>
+<text x="485" y="245" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Berline · EF-630-GH</text>
+<path d="M485 259L855 259" stroke="#d7dadd" stroke-width="2"/>
+<text x="45" y="305" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Travaux effectués du 28 au 31 octobre 2026</text>
+<text x="45" y="342" font-size="25" font-weight="600" fill="#283038" text-anchor="start">Remise en état du pare-chocs arrière</text>
+<rect x="45" y="380" width="810" height="45" fill="#e7ede9"/>
+<text x="61" y="410" font-size="19" font-weight="700" fill="#283038" text-anchor="start">DÉSIGNATION</text>
+<text x="591" y="410" font-size="19" font-weight="700" fill="#283038" text-anchor="end">QTÉ</text>
+<text x="714" y="410" font-size="19" font-weight="700" fill="#283038" text-anchor="end">P.U. HT</text>
+<text x="839" y="410" font-size="19" font-weight="700" fill="#283038" text-anchor="end">TOTAL HT</text>
+<text x="61" y="470" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Dépose et repose du pare-chocs</text>
+<text x="591" y="470" font-size="22" font-weight="400" fill="#283038" text-anchor="end">2 h</text>
+<text x="714" y="470" font-size="22" font-weight="400" fill="#283038" text-anchor="end">75,00</text>
+<text x="839" y="470" font-size="22" font-weight="400" fill="#283038" text-anchor="end">150,00</text>
+<path d="M45 494L855 494" stroke="#e0e5e1" stroke-width="2"/>
+<text x="61" y="536" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Préparation / redressage</text>
+<text x="591" y="536" font-size="22" font-weight="400" fill="#283038" text-anchor="end">3 h</text>
+<text x="714" y="536" font-size="22" font-weight="400" fill="#283038" text-anchor="end">85,00</text>
+<text x="839" y="536" font-size="22" font-weight="400" fill="#283038" text-anchor="end">255,00</text>
+<path d="M45 560L855 560" stroke="#e0e5e1" stroke-width="2"/>
+<text x="61" y="602" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Élément de pare-chocs</text>
+<text x="591" y="602" font-size="22" font-weight="400" fill="#283038" text-anchor="end">1</text>
+<text x="714" y="602" font-size="22" font-weight="400" fill="#283038" text-anchor="end">430,00</text>
+<text x="839" y="602" font-size="22" font-weight="400" fill="#283038" text-anchor="end">430,00</text>
+<path d="M45 626L855 626" stroke="#e0e5e1" stroke-width="2"/>
+<text x="61" y="668" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Mise en peinture</text>
+<text x="591" y="668" font-size="22" font-weight="400" fill="#283038" text-anchor="end">3 h</text>
+<text x="714" y="668" font-size="22" font-weight="400" fill="#283038" text-anchor="end">85,00</text>
+<text x="839" y="668" font-size="22" font-weight="400" fill="#283038" text-anchor="end">255,00</text>
+<path d="M45 692L855 692" stroke="#e0e5e1" stroke-width="2"/>
+<text x="61" y="734" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Fournitures et consommables</text>
+<text x="591" y="734" font-size="22" font-weight="400" fill="#283038" text-anchor="end">1</text>
+<text x="714" y="734" font-size="22" font-weight="400" fill="#283038" text-anchor="end">110,00</text>
+<text x="839" y="734" font-size="22" font-weight="400" fill="#283038" text-anchor="end">110,00</text>
+<path d="M45 758L855 758" stroke="#e0e5e1" stroke-width="2"/>
+<text x="535" y="830" font-size="24" font-weight="400" fill="#283038" text-anchor="start">Total HT</text>
+<text x="839" y="830" font-size="25" font-weight="400" fill="#283038" text-anchor="end">1 200,00 €</text>
+<text x="535" y="872" font-size="24" font-weight="400" fill="#283038" text-anchor="start">TVA 20 %</text>
+<text x="839" y="872" font-size="25" font-weight="400" fill="#283038" text-anchor="end">240,00 €</text>
+<text x="535" y="919" font-size="24" font-weight="600" fill="#283038" text-anchor="start">Total TTC</text>
+<text x="839" y="919" font-size="29" font-weight="600" fill="#283038" text-anchor="end">1 440,00 €</text>
+<text x="45" y="991" font-size="22" font-weight="600" fill="#283038" text-anchor="start">Règlements enregistrés</text>
+<path d="M45 1010L855 1010" stroke="#d7dadd" stroke-width="2"/>
+<text x="45" y="1049" font-size="21" font-weight="400" fill="#283038" text-anchor="start">27/10/2026</text>
+<text x="235" y="1049" font-size="21" font-weight="400" fill="#283038" text-anchor="start">CB · acompte commande</text>
+<text x="839" y="1049" font-size="23" font-weight="400" fill="#283038" text-anchor="end">400,00 €</text>
+<text x="45" y="1110" font-size="18" font-weight="400" fill="#7a837b" text-anchor="start">Garantie des réparations : 12 mois. Facture à conserver.</text>
+<text x="45" y="1139" font-size="18" font-weight="400" fill="#7a837b" text-anchor="start">Référence à rappeler pour tout règlement : FC-1086.</text>
+<text x="36" y="1160" font-size="14" font-weight="400" fill="#8d9598" text-anchor="start">Document fictif · jeu de démonstration</text>
+</g></svg>

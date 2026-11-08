@@ -12,7 +12,9 @@ python3 -m app.preview
 
 Ouvrir **http://localhost:8082/fraude**. Recommander est disponible au même port sous `/recommander`. Aucune dépendance supplémentaire pour cet aperçu. La prévisualisation écrit uniquement dans `data/preview/`, ignoré par Git ; elle n'utilise pas les données de production. Le serveur local écoute sur la boucle locale uniquement.
 
-Pour refaire une partie de test : supprimer uniquement `data/preview/fraude.sqlite3`, `fraude.sqlite3-wal` et `fraude.sqlite3-shm`, **après avoir arrêté ce serveur**. L'autre base reste en place. L'application n'expose aucune route de remise à zéro.
+Pour refaire une partie de test, utilisez **Nouvel essai**, proposé à la fin ou après « Vous avez déjà joué ». Ce bouton ne retire que la partie de ce navigateur, permet de réutiliser son trigramme et conserve les autres joueurs. Il est disponible uniquement avec `python3 -m app.preview` sur HTTP local. La configuration normale, y compris celle déployée, ne propose pas cet endpoint.
+
+Après une mise à jour du code, arrêtez puis relancez une fois le serveur local et rechargez la page : les modules Python et fichiers statiques sont chargés au démarrage. Les documents sont désormais référencés avec une empreinte de contenu pour éviter de revoir une ancienne image en cache.
 
 ## Parcours et contenu
 
@@ -24,14 +26,14 @@ Console d'arcade du jeu Recommander : mêmes polices locales, personnages, cadre
 | Gros dégâts | Pas d'alerte | Compte rendu de contrôle concordant |
 | Facture de réparation | À vérifier | AB-274-CD / AB-247-CD |
 | Facture et virement différents | Pas d'alerte | Acompte de 400 € expliquant le solde |
-| Deux véhicules déclarés | À vérifier | Même rayure en Y / repère du mur |
+| Photographies datées de dommages | À vérifier | Même rayure en Y et enfoncement sous deux angles |
 | Deux assurés, même IBAN | Pas d'alerte | Attestation de compte joint |
 
 Ordre mélangé pour chaque partie. La question est **« Cette pièce mérite-t-elle une vérification ? »**. Ce n'est pas un verdict de fraude ni une démonstration de performances de Frod. La photo impressionnante est documentée ; son rapport est une pièce fictive du scénario. Provenance et prompts : [fraud-assets.md](fraud-assets.md).
 
-Après la décision : un essai pour toucher le détail pertinent, possibilité de passer. Les pièces s'agrandissent dans un inspecteur plein écran. Les corrections encadrent les zones et expliquent les cas. Clavier : Tab/Entrée pour les commandes, gauche/droite pour décider quand le focus n'est pas sur un bouton ; sur une image pendant le bonus, flèches pour déplacer le repère, Entrée pour choisir. Les animations respectent la réduction des mouvements.
+Après la décision : un essai pour toucher le détail pertinent, possibilité de passer. Les pièces ont des formats distincts (déclaration en formulaire, facture de garage, facture détaillée avec tableau et règlements en pied de page, reçu bancaire, rapport et attestation). Les pièces s'agrandissent dans un inspecteur plein écran avec zoom ×1/×2/×4 ; on peut faire défiler au doigt ou glisser avec la souris pour examiner une zone. Un défilement ne valide pas un point de bonus. Les corrections encadrent les zones et expliquent les cas. Clavier : Tab/Entrée pour les commandes, gauche/droite pour décider quand le focus n'est pas sur un bouton ; sur une image pendant le bonus, flèches pour déplacer le repère, Entrée pour choisir. Les animations respectent la réduction des mouvements.
 
-Classement séparé : nombre de bonnes décisions, puis indices trouvés, puis somme des temps de décision. Le temps du bonus, de la correction et de l'écran de règles est exclu. Consultation des pièces et agrandissement pendant la décision restent chronométrés. Les interruptions réseau durant une décision peuvent allonger ce temps ; le serveur ne fait pas confiance à un chrono envoyé par le navigateur.
+Le rang est affiché dès le résultat, avec un accès direct au podium. Classement séparé : nombre de bonnes décisions, puis indices trouvés, puis somme des temps de décision. Le temps du bonus, de la correction et de l'écran de règles est exclu. Consultation des pièces et agrandissement pendant la décision restent chronométrés. Les interruptions réseau durant une décision peuvent allonger ce temps ; le serveur ne fait pas confiance à un chrono envoyé par le navigateur.
 
 Une partie par navigateur et trigramme, reprise après rechargement. Une partie non terminée expire au bout de 30 minutes ; résultats conservés 30 jours, comme Recommander.
 
@@ -51,7 +53,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
 node --test tests/fraud-frontend.test.mjs
 ```
 
-Les tests couvrent aussi la suite Recommander via le dispatch réel, l'isolation des cookies/bases/classements, les requêtes concurrentes, les reprises et les sauvegardes des deux bases. Les tests JavaScript couvrent les coordonnées avec bandes vides, les seuils de swipe et l'API/CSRF/reprise réseau.
+Les tests couvrent aussi la suite Recommander via le dispatch réel, l'isolation des cookies/bases/classements, les requêtes concurrentes, les reprises, les sauvegardes des deux bases et la restriction de « Nouvel essai » au mode local. Ce dernier conserve les autres joueurs et Recommander. Les tests JavaScript couvrent les coordonnées avec bandes vides, les seuils de swipe et l'API/CSRF/reprise réseau.
 
 Le parcours de l'interface a aussi été exercé avec un DOM simulé branché sur le vrai WSGI, sans socket : six décisions, choix d'indice et bonus, correction, classement et retour d'un joueur déjà inscrit. Une réponse perdue après commit a été simulée pour vérifier le bouton « Réessayer ». Ce contrôle ne remplace pas un navigateur : le rendu, le tactile et le cadrage des indices doivent encore être validés visuellement sur téléphone. Chrome et Firefox ne peuvent pas démarrer sous les restrictions de l'environnement Codex utilisé ici.
 
