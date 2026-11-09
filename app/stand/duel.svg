@@ -1,14 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 328 76" shape-rendering="crispEdges">
+<svg xmlns="http://www.w3.org/2000/svg" class="stand-duel" viewBox="0 0 328 76"
+     width="328" height="76" shape-rendering="crispEdges" aria-hidden="true">
   <style>
     @media screen and (prefers-reduced-motion: no-preference) {
-      .human { animation: human 4s infinite; }
-      .robot { animation: robot 4s infinite; }
-      .human-punch { animation: human-punch 4s infinite; }
-      .robot-punch { animation: robot-punch 4s infinite; }
-      .hit { animation: hit 4s infinite; }
+      .stand-duel .human { animation: duel-human 4s infinite; }
+      .stand-duel .robot { animation: duel-robot 4s infinite; }
+      .stand-duel .human-punch { animation: duel-human-punch 4s infinite; }
+      .stand-duel .robot-punch { animation: duel-robot-punch 4s infinite; }
+      .stand-duel .hit { animation: duel-hit 4s infinite; }
     }
 
-    @keyframes human {
+    @keyframes duel-human {
       0%, 10%, 42%, 63%, 100% { transform: translate(0, 0); }
       18% { transform: translate(-1.5px, 0.5px); }
       30% { transform: translate(19px, -1.5px); }
@@ -18,7 +19,7 @@
       87% { transform: translate(-2px, 0); }
     }
 
-    @keyframes robot {
+    @keyframes duel-robot {
       0%, 10%, 42%, 53%, 100% { transform: translate(0, 0); }
       30% { transform: translate(-16px, 0); }
       35% { transform: translate(-6px, -2px); }
@@ -28,17 +29,17 @@
       88% { transform: translate(0, 0); }
     }
 
-    @keyframes human-punch {
+    @keyframes duel-human-punch {
       0%, 25%, 35%, 100% { opacity: 0; }
       28%, 32% { opacity: 1; }
     }
 
-    @keyframes robot-punch {
+    @keyframes duel-robot-punch {
       0%, 69%, 79%, 100% { opacity: 0; }
       72%, 76% { opacity: 1; }
     }
 
-    @keyframes hit {
+    @keyframes duel-hit {
       0%, 28%, 36%, 72%, 80%, 100% { opacity: 0; }
       30%, 74% { opacity: 1; }
     }

@@ -19,8 +19,7 @@ class StandPages:
             route = f"/{slug}-qrcode"
             duel = ""
             if slug == "recommander":
-                self.pages[f"{route}/duel.svg"] = ("image/svg+xml", (STATIC / "duel.svg").read_bytes())
-                duel = f'<img class="stand-duel" src="{route}/duel.svg" width="328" height="76" alt="">'
+                duel = (STATIC / "duel.svg").read_text(encoding="utf-8")
             page = template.substitute(slug=slug, title=title, route=route, duel=duel)
             self.pages[route] = ("text/html; charset=utf-8", page.encode())
             self.pages[f"{route}/stand.css"] = ("text/css; charset=utf-8", stylesheet)
