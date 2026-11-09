@@ -7,11 +7,13 @@ import logging
 from threading import Lock
 from .config import Config
 from .http import create_app as recommander_app
+from .stand import StandPages
 
 
 class Portal:
     def __init__(self, config, *, preview=False, **kwargs):
         self.recommander = recommander_app(config, **kwargs)
+        self.stand = StandPages(config.origin)
         self.config, self.kwargs = config, kwargs
         self.preview = preview
         self.fraud = None
@@ -19,6 +21,8 @@ class Portal:
 
     def __call__(self, env, start_response):
         path = env.get("PATH_INFO", "")
+        if path in self.stand.pages:
+            return self.stand(env, start_response)
         if path != "/fraude" and not path.startswith("/fraude/"):
             return self.recommander(env, start_response)
         try:

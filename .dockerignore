@@ -5,6 +5,8 @@
 !mia/
 !mia/mia-recommander/
 !mia/mia-recommander/**
+!mia/mia-fraude/
+!mia/mia-fraude/**
 !deploy/
 !deploy/gunicorn.conf.py
 **/__pycache__
