@@ -19,6 +19,15 @@ front-end and database schema are unchanged. Local preview: `python3 -m app.prev
 then `http://localhost:8082/fraude`. See [the implementation and rollout notes](docs/fraude.md)
 and [asset provenance](docs/fraud-assets.md). Deployment remains explicit.
 
+## MIA Agent
+
+`/mia-agent` shows the MIA Agent cover (dotted blue sky, WebGL clouds, Doto and IBM Plex
+fonts self-hosted under OFL) with an « Je suis intéressé » button. Visitors leave a
+three-letter trigram, stored once per browser in a separate `agent.sqlite3`
+(`interests` table, a later entry replaces the trigram). Same CSRF, Origin, cookie,
+size and rate-limit boundary as the games; no admin route: read entries on the host with
+SQLite. Interests are kept until removed by hand; backups include this database.
+
 ## Development
 
 ```sh
