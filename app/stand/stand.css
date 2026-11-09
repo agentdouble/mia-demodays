@@ -20,8 +20,13 @@
 
 .stand-card .logo span { text-transform: uppercase; }
 
-.stand-code {
+.stand-display {
   width: min(100%, 328px);
+}
+
+.stand-duel { display: block; width: 100%; height: auto; }
+
+.stand-code {
   display: block;
   background: #fff;
   border: 4px solid var(--sky);

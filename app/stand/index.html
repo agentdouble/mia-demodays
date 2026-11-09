@@ -11,9 +11,12 @@
   <body class="stand-page">
     <main class="stand-card">
       <h1 class="logo"><b>MIA</b><span>$title</span></h1>
-      <a class="stand-code" href="/$slug" aria-label="Jouer à MIA $title">
-        <img src="$route/code.svg" width="328" height="328" alt="QR code pour jouer à MIA $title">
-      </a>
+      <div class="stand-display">
+        $duel
+        <a class="stand-code" href="/$slug" aria-label="Jouer à MIA $title">
+          <img src="$route/code.svg" width="328" height="328" alt="QR code pour jouer à MIA $title">
+        </a>
+      </div>
       <p class="stand-action">Scannez pour jouer</p>
       <a class="stand-address" href="/$slug">mia-foyer.com/$slug</a>
     </main>
