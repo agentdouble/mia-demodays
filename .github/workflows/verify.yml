@@ -20,4 +20,5 @@ jobs:
           node --check mia/mia-recommander/viewport.js
           node --test tests/fraud-frontend.test.mjs
           for module in mia/mia-fraude/*.js; do node --check "$module"; done
+          node --check app/agent/agent.js
           python -m compileall -q app deploy

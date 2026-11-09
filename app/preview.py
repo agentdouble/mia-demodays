@@ -26,6 +26,7 @@ def main():
     with make_server('127.0.0.1', args.port, create_app(config, preview=True)) as server:
         print(f'MIA Fraude: http://localhost:{args.port}/fraude', flush=True)
         print(f'Recommander: http://localhost:{args.port}/recommander', flush=True)
+        print(f'MIA Agent: http://localhost:{args.port}/mia-agent', flush=True)
         server.serve_forever()
 
 

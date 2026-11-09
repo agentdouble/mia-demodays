@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3d6fd6">
+<title>MIA Agent</title>
+<link rel="stylesheet" href="/mia-agent/agent.css">
+<script type="module" src="/mia-agent/agent.js"></script>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main class="card" id="card">
+  <canvas class="led" id="logo" aria-hidden="true"></canvas>
+  <h1>MIA Agent</h1>
+  <p class="lead">Des agents IA spécialisés pour le business.</p>
+
+  <div class="action" id="action">
+    <button type="button" class="btn" id="interest" disabled>Je suis intéressé</button>
+
+    <form id="form" hidden novalidate>
+      <label for="tri" class="visually-hidden">Votre trigramme</label>
+      <input id="tri" name="tri" maxlength="3" inputmode="text" autocomplete="off" autocapitalize="characters"
+             spellcheck="false" placeholder="ABC" pattern="[A-Za-z]{3}" required>
+      <button type="submit" class="btn" id="send">Valider</button>
+    </form>
+
+    <p class="done" id="done" hidden><strong id="doneTri"></strong> C'est noté, on revient vers vous.</p>
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  </div>
+
+</main>
+<a class="legal" href="/mia-agent/donnees">Données</a>
+</body>
+</html>
