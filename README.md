@@ -10,6 +10,15 @@ a normal document. Asset references are content-versioned so a new release refre
 Returning browsers are checked before entering a trigram: a finished round shows
 “Vous avez déjà joué” with access to the leaderboard. The server still enforces one round.
 
+## MIA Fraude
+
+An independent observation game is available at `/fraude`, using the same arcade
+cabinet in amber/fire colors. Six fictional dossiers, swipe decisions, optional
+clue selection, annotated explanations and a separate leaderboard. Recommander's
+front-end and database schema are unchanged. Local preview: `python3 -m app.preview`,
+then `http://localhost:8082/fraude`. See [the implementation and rollout notes](docs/fraude.md)
+and [asset provenance](docs/fraud-assets.md). Deployment remains explicit.
+
 ## Development
 
 ```sh

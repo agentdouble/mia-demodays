@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr" class="game-document">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content">
+<title>MIA Fraude — Le jeu</title>
+<link rel="stylesheet" href="/fraude/game.css">
+</head>
+<body class="game-page">
+<div class="wrap"><main class="screen" id="screen">
+  <div class="hud" id="hud" hidden>
+    <div class="pips" id="pips" aria-label="Progression"></div>
+    <div class="timer" id="timer" aria-label="Temps de décision">00:00.0</div>
+    <button class="mute" id="mute" aria-label="Couper le son">♪</button>
+  </div>
+  <div class="stage" id="stage"></div>
+  <section class="help" id="helpPanel" hidden aria-labelledby="helpTitle">
+    <h2 id="helpTitle">LA MISSION</h2>
+    <ol class="steps">
+      <li><b>1</b><span>Examinez les pièces. Les onglets montrent les autres documents ; ⛶ les agrandit.</span></li>
+      <li><b>2</b><span>Glissez à gauche : <strong>pas d’alerte</strong>. À droite : <strong>à vérifier</strong>. Les boutons fonctionnent aussi.</span></li>
+      <li><b>3</b><span>Bonus : touchez le détail qui motive votre décision ou qui explique l’écart.</span></li>
+    </ol>
+    <p class="help-ex">Classement : bonnes décisions, puis indices trouvés, puis temps de décision. Le chrono s’arrête pendant le bonus et la correction.</p>
+    <p class="help-rules">6 cas préparés pour le jeu, environ 3 minutes. Vous repérez un motif de vérification : vous ne prononcez pas un verdict de fraude. Au clavier : ← / → pour décider ; Tab pour naviguer.</p>
+    <button class="start" id="helpClose">COMPRIS</button>
+  </section>
+  <div id="notice" class="notice" role="status" aria-live="polite"></div>
+</main></div>
+<dialog id="viewer" aria-labelledby="viewerTitle">
+  <div class="viewer-head"><strong id="viewerTitle"></strong><button id="viewerClose" class="help-btn">FERMER ×</button></div>
+  <p id="viewerHint"></p>
+  <div class="viewer-tools"><button id="viewerZoom" class="help-btn" aria-label="Zoom : 1 fois">ZOOM ×1</button><span>×2 / ×4 · faites glisser pour explorer</span></div>
+  <div class="zoom-media" id="zoomMedia"></div>
+  <div id="viewerTabs" class="evidence-tabs"></div>
+</dialog>
+<script type="module" src="/fraude/game.js"></script>
+<footer class="privacy-link"><a href="/fraude/donnees">Données et crédits</a></footer>
+</body></html>

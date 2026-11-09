@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="890" viewBox="0 0 680 890">
+<rect width="680" height="890" fill="#f3f6f5"/>
+<g font-family="Arial,sans-serif">
+<rect x="0" y="0" width="680" height="125" fill="#253e3b"/>
+<text x="340" y="54" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">ESPACE BANCAIRE</text>
+<text x="340" y="94" font-size="27" font-weight="600" fill="#fff" text-anchor="middle">Justificatif d’opération</text>
+<text x="340" y="198" font-size="22" font-weight="700" fill="#386b54" text-anchor="middle">VIREMENT EXÉCUTÉ</text>
+<text x="340" y="265" font-size="55" font-weight="700" fill="#283038" text-anchor="middle">1 040,00 €</text>
+<text x="340" y="309" font-size="23" font-weight="400" fill="#7b8783" text-anchor="middle">05 novembre 2026</text>
+<text x="46" y="390" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">DEPUIS</text>
+<text x="46" y="424" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Sam Robin</text>
+<path d="M46 438L634 438" stroke="#d7dadd" stroke-width="2"/>
+<text x="46" y="494" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">VERS</text>
+<text x="46" y="528" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Carrosserie du Canal</text>
+<path d="M46 542L634 542" stroke="#d7dadd" stroke-width="2"/>
+<text x="46" y="598" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">LIBELLÉ</text>
+<text x="46" y="632" font-size="29" font-weight="600" fill="#283038" text-anchor="start">FC-1086</text>
+<path d="M46 646L634 646" stroke="#d7dadd" stroke-width="2"/>
+<text x="46" y="702" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">RÉFÉRENCE</text>
+<text x="46" y="736" font-size="29" font-weight="600" fill="#283038" text-anchor="start">VIR-051126-3807</text>
+<path d="M46 750L634 750" stroke="#d7dadd" stroke-width="2"/>
+<text x="46" y="835" font-size="17" font-weight="400" fill="#7b8783" text-anchor="start">Émis depuis l’espace client / opération comptabilisée</text>
+<text x="36" y="870" font-size="14" font-weight="400" fill="#8d9598" text-anchor="start">Document fictif · jeu de démonstration</text>
+</g></svg>

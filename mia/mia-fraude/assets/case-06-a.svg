@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="660" viewBox="0 0 960 660">
+<rect width="960" height="660" fill="#f3f5f8"/>
+<g font-family="Arial,sans-serif">
+<rect x="0" y="0" width="960" height="83" fill="#323b49"/>
+<text x="35" y="51" font-size="27" font-weight="700" fill="#fff" text-anchor="start">RÈGLEMENT DES SINISTRES</text>
+<rect x="32" y="122" width="434" height="459" fill="#fff" stroke="#d5dce3" stroke-width="2"/>
+<text x="54" y="171" font-size="27" font-weight="700" fill="#526783" text-anchor="start">DOSSIER H-201</text>
+<text x="54" y="235" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Alex Martin</text>
+<text x="54" y="281" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Dégât des eaux</text>
+<text x="54" y="323" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Sinistre : 18/10/2026</text>
+<path d="M54 355L444 355" stroke="#d7dadd" stroke-width="2"/>
+<text x="54" y="404" font-size="17" font-weight="400" fill="#7c8793" text-anchor="start">COMPTE DE REMBOURSEMENT</text>
+<text x="54" y="449" font-size="23" font-weight="600" fill="#283038" text-anchor="start">LU•• •••• •••• •••• 7849</text>
+<text x="54" y="537" font-size="21" font-weight="400" fill="#7c8793" text-anchor="start">Pièce bancaire jointe</text>
+<rect x="494" y="122" width="434" height="459" fill="#fff" stroke="#d5dce3" stroke-width="2"/>
+<text x="516" y="171" font-size="27" font-weight="700" fill="#526783" text-anchor="start">DOSSIER H-366</text>
+<text x="516" y="235" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Charlie Martin</text>
+<text x="516" y="281" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Bris de vitre</text>
+<text x="516" y="323" font-size="22" font-weight="400" fill="#283038" text-anchor="start">Sinistre : 31/10/2026</text>
+<path d="M516 355L906 355" stroke="#d7dadd" stroke-width="2"/>
+<text x="516" y="404" font-size="17" font-weight="400" fill="#7c8793" text-anchor="start">COMPTE DE REMBOURSEMENT</text>
+<text x="516" y="449" font-size="23" font-weight="600" fill="#283038" text-anchor="start">LU•• •••• •••• •••• 7849</text>
+<text x="516" y="537" font-size="21" font-weight="400" fill="#7c8793" text-anchor="start">Pièce bancaire jointe</text>
+<text x="35" y="621" font-size="18" font-weight="400" fill="#7c8793" text-anchor="start">Vue de consultation · coordonnées masquées</text>
+<text x="36" y="640" font-size="14" font-weight="400" fill="#8d9598" text-anchor="start">Document fictif · jeu de démonstration</text>
+</g></svg>

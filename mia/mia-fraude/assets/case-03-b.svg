@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="1000" viewBox="0 0 820 1000">
+<rect width="820" height="1000" fill="#fffdf7"/>
+<g font-family="Arial,sans-serif">
+<text x="48" y="68" font-size="52" font-weight="700" fill="#9a5140" text-anchor="start">AP</text>
+<text x="150" y="54" font-size="25" font-weight="700" fill="#283038" text-anchor="start">ATELIER DES PEUPLIERS</text>
+<text x="150" y="88" font-size="19" font-weight="400" fill="#8d7565" text-anchor="start">Carrosserie · peinture · réparation</text>
+<path d="M48 126L772 126" stroke="#9a5140" stroke-width="2"/>
+<text x="48" y="183" font-size="42" font-weight="700" fill="#283038" text-anchor="start">FACTURE</text>
+<text x="770" y="174" font-size="25" font-weight="700" fill="#283038" text-anchor="end">F-2026-0413</text>
+<text x="770" y="210" font-size="21" font-weight="400" fill="#283038" text-anchor="end">03 novembre 2026</text>
+<text x="48" y="265" font-size="18" font-weight="400" fill="#8d7565" text-anchor="start">FACTURÉ À</text>
+<text x="48" y="305" font-size="30" font-weight="700" fill="#283038" text-anchor="start">Camille Leroy</text>
+<rect x="48" y="347" width="724" height="106" fill="#f2ece0"/>
+<text x="66" y="379" font-size="24" font-weight="400" fill="#283038" text-anchor="start">Véhicule : compacte grise</text>
+<text x="66" y="421" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Immatriculation : AB-247-CD</text>
+<text x="48" y="508" font-size="19" font-weight="700" fill="#283038" text-anchor="start">DÉSIGNATION</text>
+<text x="768" y="508" font-size="19" font-weight="700" fill="#283038" text-anchor="end">MONTANT HT</text>
+<text x="48" y="563" font-size="24" font-weight="400" fill="#283038" text-anchor="start">Remplacement du pare-chocs</text>
+<text x="768" y="563" font-size="25" font-weight="400" fill="#283038" text-anchor="end">840,00 €</text>
+<path d="M48 585L772 585" stroke="#d7dadd" stroke-width="2"/>
+<text x="48" y="630" font-size="24" font-weight="400" fill="#283038" text-anchor="start">Préparation et peinture</text>
+<text x="768" y="630" font-size="25" font-weight="400" fill="#283038" text-anchor="end">510,00 €</text>
+<path d="M48 652L772 652" stroke="#d7dadd" stroke-width="2"/>
+<text x="48" y="697" font-size="24" font-weight="400" fill="#283038" text-anchor="start">Main-d’œuvre et ajustage</text>
+<text x="768" y="697" font-size="25" font-weight="400" fill="#283038" text-anchor="end">210,00 €</text>
+<path d="M48 719L772 719" stroke="#d7dadd" stroke-width="2"/>
+<text x="420" y="794" font-size="22" font-weight="400" fill="#283038" text-anchor="start">TOTAL HT</text>
+<text x="768" y="794" font-size="24" font-weight="400" fill="#283038" text-anchor="end">1 560,00 €</text>
+<text x="420" y="837" font-size="22" font-weight="400" fill="#283038" text-anchor="start">TVA 20 %</text>
+<text x="768" y="837" font-size="24" font-weight="400" fill="#283038" text-anchor="end">312,00 €</text>
+<rect x="401" y="864" width="371" height="66" fill="#9a5140"/>
+<text x="418" y="908" font-size="25" font-weight="700" fill="#fff" text-anchor="start">TTC</text>
+<text x="754" y="908" font-size="34" font-weight="700" fill="#fff" text-anchor="end">1 872,00 €</text>
+<text x="48" y="961" font-size="18" font-weight="400" fill="#8d7565" text-anchor="start">Paiement à réception · référence F-2026-0413</text>
+<text x="36" y="980" font-size="14" font-weight="400" fill="#8d9598" text-anchor="start">Document fictif · jeu de démonstration</text>
+</g></svg>

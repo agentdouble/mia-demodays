@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="760" viewBox="0 0 900 760">
+<rect width="900" height="760" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif">
+<rect x="0" y="0" width="900" height="82" fill="#25495b"/>
+<text x="38" y="53" font-size="28" font-weight="700" fill="#ffffff" text-anchor="start">DÉCLARATION DE SINISTRE AUTOMOBILE</text>
+<text x="38" y="124" font-size="31" font-weight="700" fill="#283038" text-anchor="start">Dossier D-413</text>
+<text x="860" y="124" font-size="21" font-weight="400" fill="#283038" text-anchor="end">Reçu le 29/10/2026</text>
+<rect x="38" y="155" width="824" height="45" fill="#e4ebef"/>
+<text x="52" y="186" font-size="22" font-weight="700" fill="#283038" text-anchor="start">01  /  ASSURÉ ET VÉHICULE</text>
+<text x="52" y="241" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">NOM ET PRÉNOM</text>
+<text x="52" y="275" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Camille Leroy</text>
+<path d="M52 289L412 289" stroke="#d7dadd" stroke-width="2"/>
+<text x="475" y="241" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">DATE DU SINISTRE</text>
+<text x="475" y="275" font-size="29" font-weight="600" fill="#283038" text-anchor="start">28/10/2026</text>
+<path d="M475 289L845 289" stroke="#d7dadd" stroke-width="2"/>
+<text x="52" y="345" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">VÉHICULE</text>
+<text x="52" y="379" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Compacte grise</text>
+<path d="M52 393L412 393" stroke="#d7dadd" stroke-width="2"/>
+<text x="475" y="345" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">IMMATRICULATION</text>
+<text x="475" y="379" font-size="29" font-weight="600" fill="#283038" text-anchor="start">AB-274-CD</text>
+<path d="M475 393L845 393" stroke="#d7dadd" stroke-width="2"/>
+<rect x="38" y="423" width="824" height="45" fill="#e4ebef"/>
+<text x="52" y="454" font-size="22" font-weight="700" fill="#283038" text-anchor="start">02  /  CIRCONSTANCES ET RÉPARATION</text>
+<text x="52" y="514" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Choc à l’avant du véhicule lors d’une manœuvre.</text>
+<text x="52" y="555" font-size="25" font-weight="400" fill="#283038" text-anchor="start">Pare-chocs rayé et peinture endommagée.</text>
+<text x="52" y="617" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">RÉPARATEUR DÉSIGNÉ</text>
+<text x="52" y="651" font-size="29" font-weight="600" fill="#283038" text-anchor="start">Atelier des Peupliers</text>
+<path d="M52 665L822 665" stroke="#d7dadd" stroke-width="2"/>
+<text x="52" y="710" font-size="19" font-weight="400" fill="#75818a" text-anchor="start">Déclaration transmise en ligne / pièces jointes : 2</text>
+<text x="36" y="740" font-size="14" font-weight="400" fill="#8d9598" text-anchor="start">Document fictif · jeu de démonstration</text>
+</g></svg>

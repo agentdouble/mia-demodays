@@ -1,7 +1,7 @@
 name: Verify
 on:
   push:
-    branches: [dev, stg, prod]
+    branches: [dev, stg, prod, feat/mia-fraude-game]
   pull_request:
 permissions:
   contents: read
@@ -18,4 +18,6 @@ jobs:
           node --check mia/mia-recommander/game.js
           node --check mia/mia-recommander/api.js
           node --check mia/mia-recommander/viewport.js
+          node --test tests/fraud-frontend.test.mjs
+          for module in mia/mia-fraude/*.js; do node --check "$module"; done
           python -m compileall -q app deploy
