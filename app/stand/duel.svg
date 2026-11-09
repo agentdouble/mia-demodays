@@ -1,53 +1,82 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="stand-duel" viewBox="0 0 328 76"
+<svg xmlns="http://www.w3.org/2000/svg" class="stand-scene stand-duel" viewBox="0 0 328 76"
      width="328" height="76" shape-rendering="crispEdges" aria-hidden="true">
   <style>
     @media screen and (prefers-reduced-motion: no-preference) {
-      .stand-duel .human { animation: duel-human 4s infinite; }
-      .stand-duel .robot { animation: duel-robot 4s infinite; }
-      .stand-duel .human-punch { animation: duel-human-punch 4s infinite; }
-      .stand-duel .robot-punch { animation: duel-robot-punch 4s infinite; }
-      .stand-duel .hit { animation: duel-hit 4s infinite; }
+      .stand-duel { --duel-round: 8s; }
+      .stand-duel .human { animation: duel-human var(--duel-round) infinite; }
+      .stand-duel .robot { animation: duel-robot var(--duel-round) infinite; }
+      .stand-duel .human-punch { animation: duel-human-punch var(--duel-round) infinite; }
+      .stand-duel .robot-punch { animation: duel-robot-punch var(--duel-round) infinite; }
+      .stand-duel .hit { animation: duel-hit var(--duel-round) infinite; }
+      .stand-duel .shield { animation: duel-shield var(--duel-round) infinite; }
+      .stand-duel .laser { animation: duel-laser var(--duel-round) infinite; }
+      .stand-duel .swoosh { animation: duel-swoosh var(--duel-round) infinite; }
     }
 
     @keyframes duel-human {
-      0%, 10%, 42%, 63%, 100% { transform: translate(0, 0); }
-      18% { transform: translate(-1.5px, 0.5px); }
-      30% { transform: translate(19px, -1.5px); }
-      34% { transform: translate(15.5px, 0); }
-      74% { transform: translate(16px, 0); }
-      79% { transform: translate(6px, -2px); }
-      87% { transform: translate(-2px, 0); }
+      0%, 7%, 25%, 29%, 47%, 68%, 94%, 100% { transform: translate(0, 0); }
+      11% { transform: translate(-1.5px, 0.5px); }
+      16% { transform: translate(19px, -1.5px); }
+      20% { transform: translate(15.5px, 0); }
+      36% { transform: translate(16px, 0); }
+      40% { transform: translate(6px, -2px); }
+      44%, 60% { transform: translate(-2px, 0); }
+      74% { transform: translate(2px, 0.75px); }
+      82% { transform: translate(19px, -2.75px); }
+      87% { transform: translate(14px, -1px); }
     }
 
     @keyframes duel-robot {
-      0%, 10%, 42%, 53%, 100% { transform: translate(0, 0); }
-      30% { transform: translate(-16px, 0); }
-      35% { transform: translate(-6px, -2px); }
-      63% { transform: translate(1.5px, 0.5px); }
-      74% { transform: translate(-19px, -1.5px); }
-      78% { transform: translate(-15.5px, 0); }
-      88% { transform: translate(0, 0); }
+      0%, 7%, 25%, 47%, 68%, 74%, 94%, 100% { transform: translate(0, 0); }
+      16%, 82% { transform: translate(-16px, 0); }
+      20% { transform: translate(-6px, -0.75px); }
+      30% { transform: translate(1.5px, 0.5px); }
+      36% { transform: translate(-19px, -0.75px); }
+      40% { transform: translate(-15.5px, 0); }
+      58% { transform: translate(1px, 0); }
+      87% { transform: translate(-2px, -0.75px); }
     }
 
     @keyframes duel-human-punch {
-      0%, 25%, 35%, 100% { opacity: 0; }
-      28%, 32% { opacity: 1; }
+      0%, 13%, 20%, 77%, 86%, 100% { opacity: 0; }
+      16%, 18%, 81%, 83% { opacity: 1; }
     }
 
     @keyframes duel-robot-punch {
-      0%, 69%, 79%, 100% { opacity: 0; }
-      72%, 76% { opacity: 1; }
+      0%, 33%, 41%, 100% { opacity: 0; }
+      36%, 38% { opacity: 1; }
     }
 
     @keyframes duel-hit {
-      0%, 28%, 36%, 72%, 80%, 100% { opacity: 0; }
-      30%, 74% { opacity: 1; }
+      0%, 14%, 20%, 34%, 41%, 79%, 88%, 100% { opacity: 0; }
+      16%, 36%, 82% { opacity: 1; }
+      0%, 41% { transform: translateY(0); }
+      79%, 100% { transform: translateY(-12px); }
+    }
+
+    @keyframes duel-shield {
+      0%, 53%, 67%, 100% { opacity: 0; }
+      56%, 64% { opacity: 1; }
+    }
+
+    @keyframes duel-laser {
+      0%, 55%, 65%, 100% { opacity: 0; transform: scaleX(0); }
+      58%, 61% { opacity: 1; transform: scaleX(1); }
+    }
+
+    @keyframes duel-swoosh {
+      0%, 75%, 87%, 100% { opacity: 0; }
+      81%, 83% { opacity: 1; }
     }
   </style>
 
   <path fill="#1F285C" d="M0 68h328v8H0z"/>
   <path fill="#33408A" d="M0 68h328v2H0z"/>
   <path fill="#8C93C9" opacity=".45" d="M10 68h12v2H10zM34 68h12v2H34zM282 68h12v2H282zM306 68h12v2H306z"/>
+  <g class="swoosh" opacity="0">
+    <path fill="#FFC94A" d="M57 61h26v-5h22v-6h14v5h-10v6H90v5H57z"/>
+    <path fill="#FFF4B8" d="M76 51h17v-4h12v3H96v4H76z"/>
+  </g>
 
   <!-- Pixel portraits from the Recommander game's avatar(PLAYER) and robot(). -->
   <g transform="translate(20 4) scale(4)">
@@ -84,6 +113,15 @@
     </g>
   </g>
 
+  <g class="laser" opacity="0" style="transform-origin: 264px 30px">
+    <path fill="#43C6F5" d="M79 27h185v6H79zM111 19h35v3h-35zM170 39h48v3h-48z"/>
+    <path fill="#F2F4FF" d="M79 29h185v2H79z"/>
+  </g>
+  <g class="shield" opacity="0">
+    <path fill="#FFC94A" d="M62 16h12v4h5v8h4v20h-4v8h-5v4H62v-4h8v-4h5v-8h4V32h-4v-8h-5v-4h-8z"/>
+    <path fill="#FFC94A" opacity=".35" d="M64 20h6v4h5v8h4v12h-4v8h-5v4h-6z"/>
+    <path fill="#FFF4B8" d="M77 27h6v6h-6z"/>
+  </g>
   <g class="hit" opacity="0">
     <path fill="#FFC94A" d="M160 29h8v8h8v8h8v8h-12v8h-8v-8h-16v-8h8v-8h4z"/>
     <path fill="#FFF4B8" d="M162 39h4v6h8v4h-8v6h-4v-6h-8v-4h8z"/>

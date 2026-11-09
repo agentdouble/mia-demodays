@@ -15,12 +15,13 @@ class StandPages:
         self.pages = {}
         template = Template((STATIC / "index.html").read_text(encoding="utf-8"))
         stylesheet = (STATIC / "stand.css").read_bytes()
-        for slug, title in (("recommander", "Recommander"), ("fraude", "Fraude")):
+        for slug, title, scene_file in (
+            ("recommander", "Recommander", "duel.svg"),
+            ("fraude", "Fraude", "inspection.svg"),
+        ):
             route = f"/{slug}-qrcode"
-            duel = ""
-            if slug == "recommander":
-                duel = (STATIC / "duel.svg").read_text(encoding="utf-8")
-            page = template.substitute(slug=slug, title=title, route=route, duel=duel)
+            scene = (STATIC / scene_file).read_text(encoding="utf-8")
+            page = template.substitute(slug=slug, title=title, route=route, scene=scene)
             self.pages[route] = ("text/html; charset=utf-8", page.encode())
             self.pages[f"{route}/stand.css"] = ("text/css; charset=utf-8", stylesheet)
             self.pages[f"{route}/code.svg"] = ("image/svg+xml", (STATIC / f"{slug}.svg").read_bytes())
