@@ -137,13 +137,13 @@ class FraudTests(unittest.TestCase):
     def test_competing_claim_and_expiry(self):
         other=FraudBrowser(self.app);other.session()
         with ThreadPoolExecutor(2) as pool:
-            statuses=list(pool.map(lambda b:b.api('claim',{'tri':'ABC'})['status'],[self.b,other]))
+            statuses=list(pool.map(lambda b:b.api('claim',{'tri':'123'})['status'],[self.b,other]))
         self.assertEqual(sorted(statuses),[200,409])
         loser=self.b if statuses[0]==409 else other
         self.assertIsNone(loser.session()['json']['participation'])
         self.now+=1801
         self.assertIsNone(self.b.session()['json']['participation'])
-        self.assertEqual(self.b.api('claim',{'tri':'ABC'})['status'],200)
+        self.assertEqual(self.b.api('claim',{'tri':'123'})['status'],200)
 
     def test_csrf_host_json_and_explicit_assets(self):
         for headers in [{'HTTP_ORIGIN':'https://evil.test'},{'HTTP_X_CSRF_TOKEN':''},{'HTTP_COOKIE':''},{'HTTP_SEC_FETCH_SITE':'cross-site'}]:

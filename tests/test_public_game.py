@@ -69,7 +69,7 @@ class PublicGameTests(unittest.TestCase):
         self.assertEqual(self.browser.api("claim", {"tri": "ABC", "score": 6})["status"], 400)
 
     def test_round_timing_score_and_retry_are_server_authoritative(self):
-        response = self.browser.api("claim", {"tri": "ABC"})
+        response = self.browser.api("claim", {"tri": "A1B"})
         self.assertEqual(response["status"], 200)
         clients = response["json"]["clients"]
         self.assertEqual(len({c["name"] for c in clients}), 6)
@@ -92,7 +92,7 @@ class PublicGameTests(unittest.TestCase):
         self.assertEqual(retry["json"], response["json"])
         self.assertEqual(self.browser.api("answer", {"index": 5, "yes": not answers[clients[5]["name"]]})["status"], 409)
         board = self.browser.api("leaderboard")["json"]["rows"]
-        self.assertEqual(board, [{"tri": "ABC", "score": 6, "timeMs": 6000, "grade": "S", "total": 6}])
+        self.assertEqual(board, [{"tri": "A1B", "score": 6, "timeMs": 6000, "grade": "S", "total": 6}])
         self.assertEqual(self.browser.api("claim", {"tri": "DEF"})["status"], 409)
 
     def test_concurrent_claim_is_unique_and_cannot_steal_round(self):

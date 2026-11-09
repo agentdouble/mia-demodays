@@ -45,9 +45,13 @@ def participation(db, owner, now):
     return {"tri": row["tri"], "status": status}
 
 
-def claim(db, owner, tri, now):
-    if not isinstance(tri, str) or not re.fullmatch(r"[A-Z]{3}", tri):
+def validate_trigram(tri):
+    if not isinstance(tri, str) or not re.fullmatch(r"[A-Z0-9]{3}", tri):
         raise Problem("invalid_trigram")
+
+
+def claim(db, owner, tri, now):
+    validate_trigram(tri)
     db.execute("DELETE FROM games WHERE created<? OR (started IS NULL AND created<?)",
                (now - RETENTION, now - LEASE))
     # A started but unfinished round also expires after 30 minutes.

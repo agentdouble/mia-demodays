@@ -7,8 +7,7 @@ from pathlib import Path
 import json
 import math
 import random
-import re
-from .game import Problem, RETENTION, LEASE
+from .game import Problem, RETENTION, LEASE, validate_trigram
 
 CASES = json.loads(Path(__file__).with_name("fraud_cases.json").read_text())
 ROUND = 6
@@ -71,8 +70,7 @@ def participation(db, owner, now):
 
 
 def claim(db, owner, tri, now):
-    if not isinstance(tri, str) or not re.fullmatch(r"[A-Z]{3}", tri):
-        raise Problem("invalid_trigram")
+    validate_trigram(tri)
     purge(db, now)
     row = db.execute("SELECT * FROM games WHERE tri=? OR owner=?", (tri, owner)).fetchone()
     if row:

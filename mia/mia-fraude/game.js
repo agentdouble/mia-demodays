@@ -51,7 +51,7 @@ $("zoomMedia").addEventListener("pointercancel",()=>{pan=null;});
 
 function clear() { screen.dataset.phase="";cancelAnimationFrame(raf);clearInterval(boardInterval);boardInterval=null;notice.replaceChildren();stage.replaceChildren();hud.hidden=true; }
 function message(text) { notice.textContent=text; }
-const errors={taken:"Ce trigramme est déjà pris. Essayez-en un autre.",played:"Une partie est déjà associée à ce navigateur.",expired:"La partie a expiré après 30 minutes. Rechargez la page pour recommencer.",limited:"Beaucoup de connexions. Réessayez dans une minute.",forbidden:"La session doit être actualisée. Rechargez la page.",too_fast:"Un peu trop rapide. Réessayez.",invalid_trigram:"Saisissez trois lettres de A à Z.",unavailable:"Le jeu est momentanément indisponible."};
+const errors={taken:"Ce trigramme est déjà pris. Essayez-en un autre.",played:"Une partie est déjà associée à ce navigateur.",expired:"La partie a expiré après 30 minutes. Rechargez la page pour recommencer.",limited:"Beaucoup de connexions. Réessayez dans une minute.",forbidden:"La session doit être actualisée. Rechargez la page.",too_fast:"Un peu trop rapide. Réessayez.",invalid_trigram:"Saisissez trois lettres ou chiffres.",unavailable:"Le jeu est momentanément indisponible."};
 async function run(action,retry) {
   if(busy)return;busy=true;screen.setAttribute("aria-busy","true");notice.replaceChildren();
   try { await action(); }
@@ -97,11 +97,11 @@ function replay() {
 }
 function entry() {
   clear();mode="entry";
-  stage.innerHTML=`<form class="entry" id="entry"><h2 class="entry-label">VOTRE TRIGRAMME</h2><p>Trois lettres pour le classement.<br>${preview?"Aperçu local : vous pouvez refaire un essai.":"Une partie par navigateur et par trigramme."}</p>
-  <div class="slots"><span></span><span></span><span></span><input id="tri" aria-label="Trigramme de trois lettres" maxlength="3" pattern="[A-Za-z]{3}" autocomplete="off" autocapitalize="characters" spellcheck="false" required></div>
+  stage.innerHTML=`<form class="entry" id="entry"><h2 class="entry-label">VOTRE TRIGRAMME</h2><p>Trois lettres ou chiffres pour le classement.<br>${preview?"Aperçu local : vous pouvez refaire un essai.":"Une partie par navigateur et par trigramme."}</p>
+  <div class="slots"><span></span><span></span><span></span><input id="tri" aria-label="Trigramme, trois lettres ou chiffres" maxlength="3" pattern="[A-Za-z0-9]{3}" autocomplete="off" autocapitalize="characters" spellcheck="false" required></div>
   <p class="entry-msg" id="entryMessage"></p><button class="start" id="claim" disabled>CONTINUER</button><button type="button" class="link" id="back">RETOUR</button></form>`;
   const input=$("tri"),slots=[...document.querySelectorAll(".slots span")];
-  input.oninput=()=>{input.value=input.value.toUpperCase().replace(/[^A-Z]/g,"").slice(0,3);slots.forEach((s,i)=>{s.textContent=input.value[i]||"";s.classList.toggle("cur",i===input.value.length);});$("claim").disabled=input.value.length!==3;};
+  input.oninput=()=>{input.value=input.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,3);slots.forEach((s,i)=>{s.textContent=input.value[i]||"";s.classList.toggle("cur",i===input.value.length);});$("claim").disabled=input.value.length!==3;};
   $("entry").onsubmit=e=>{e.preventDefault();if(input.value.length!==3)return;
     run(async()=>{state=await api.post("claim",{tri:input.value});input.blur();mission();},()=>$("claim").click());};
   $("back").onclick=title;input.focus({preventScroll:true});

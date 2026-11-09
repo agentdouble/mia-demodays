@@ -164,7 +164,7 @@ import { lockGameViewport } from "./viewport.js";
 
   /* ---------- Trigramme : une seule partie chacun ---------- */
   let player = null, currentGame = null, confirmedResult = null;
-  const cleanTri = v => v.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 3);
+  const cleanTri = v => v.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 3);
   async function claim(tri) {
     try { currentGame = await api.post("claim", { tri }); return "ok"; }
     catch (error) { return error.code || "error"; }
@@ -240,7 +240,7 @@ import { lockGameViewport } from "./viewport.js";
         <p class="entry-label">TRIGRAMME</p>
         <label class="slots" for="tri">
           <span></span><span></span><span></span>
-          <input id="tri" maxlength="3" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" aria-label="Trigramme, 3 lettres">
+          <input id="tri" maxlength="3" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" aria-label="Trigramme, trois lettres ou chiffres">
         </label>
         <p class="entry-msg" id="msg" role="status"></p>
         <button class="start" id="go" disabled><span>GO</span></button>
